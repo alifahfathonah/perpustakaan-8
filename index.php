@@ -16,10 +16,23 @@ include 'config/koneksi.php';
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:600,300|Josefin+Slab:400,700,600italic,600,400italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/slick-team-slider.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
+<style type="text/css">
+    .navbar-default .navbar-brand {
+    color: green;
+    }
+    .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
+    {
+      border-bottom: 2px solid green;
+        outline: none;
+    }
+    .footer_copyright a {
+        color: green;
+    }
+  </style>
 </head>
 
 <body>
-  <!--HEADER START-->
+
   <div class="main-navigation navbar-fixed-top">
     <nav class="navbar navbar-default">
       <div class="container">
@@ -29,38 +42,37 @@ include 'config/koneksi.php';
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 			  </button>
-          <a class="navbar-brand" href="index.php?content=home_user">Perpustakaan</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.php?content=home_user">Home</a></li>
-            <li><a href="index.php?content=kunjungan">Kunjungan</a></li>
-            <li><a href="index.php?content=pencarian_buku">Pencarian Buku</a></li>
-          </ul>
-        </div>
+    <ul class="nav navbar-nav">
+        <li><img width="60px" src="img/logo.jpeg"></li>
+        <a class="navbar-brand" href="index.php?content=index">&nbsp;&nbsp;Perpustakaan<br><font size="4px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SMK PATRIOT 2 BEKASI</font></a>
       </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.php?content=index">Home</a></li>
+          <li><a href="index.php?content=kunjungan">Kunjungan</a></li>
+          <li><a href="index.php?content=pencarian_buku">Pencarian Buku</a></li>
+          </ul>
+      </div>
+    </div>
     </nav>
   </div>
-
 
 <br>
 <br>
 <br>
  
-        <div>
-           <?php
-              if ($content=='index')
-                include 'home_user.php'; 
-              else if ($content=='kunjungan')
-                include 'kunjungan.php';
-              else if ($content=='pencarian_buku')
-                include 'pencarian_buku.php';
-            ?>
-
+    <div>
+      <?php
+      if ($content=='index')
+      include 'home_user.php'; 
+      else if ($content=='kunjungan')
+      include 'kunjungan.php';
+      else if ($content=='pencarian_buku')
+      include 'pencarian_buku.php';
+      ?>
     </div> 
-  <!--HEADER END-->
 
-    <!--FOOTER START-->
+
   <footer class="footer section-padding">
     <div class="container">
       <div class="row">
@@ -75,25 +87,16 @@ include 'config/koneksi.php';
             </ul>
           </div>
         </div>
-        <!--- END COL -->
       </div>
-      <!--- END ROW -->
     </div>
-    <!--- END CONTAINER -->
   </footer>
-  <!--FOOTER END-->
+
   <div class="footer-bottom">
     <div class="container">
       <div style="visibility: visible; animation-name: zoomIn;" class="col-md-12 text-center wow zoomIn">
         <div class="footer_copyright">
           <p> 2020 © Kerja Praktek</p>
           <div class="credits">
-            <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Tempo
-            -->
             Designed by <a href="https://bootstrapmade.com/">Sapitri Anggraini</a>
           </div>
         </div>

@@ -1,13 +1,6 @@
 # Change Log
 
-## [2.0.0] 2017-12-11
-### Major Release
-- update to Bootstrap 4 Beta
-- added new icons by Nucleo
-- bug fixes and improvements
-- code refactoring
-
-## [1.4.0] 2017-11-02
+## [1.4.0] 2017-11-03
 ### Library Updates
 - jQuery - `3.2.1`
 - bootstrap - `3.3.7`

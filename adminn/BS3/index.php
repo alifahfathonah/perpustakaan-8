@@ -1,31 +1,9 @@
 <?php
+include 'config/koneksi.php';
   if(isset($_GET['content'])) $content = $_GET['content']; 
       else $content = "index";
 ?>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -80,42 +58,42 @@
                 <li class="active">
                 </li>
                  <li>
-                    <a href="data-buku.php">
+                    <a href="index.php?content=data-buku">
                         <p>Data Buku</p>
                     </a>
                 </li>
                 <li>
-                    <a href="data-anggota.php">
+                    <a href="index.php?content=data-anggota">
                         <p>Data Anggota</p>
                     </a>
                 </li>
                 <li>
-                    <a href="cetak-kartu-anggota.php">
+                    <a href="index.php?content=cetak-kartu-anggota">
                         <p>Cetak Kartu Anggota</p>
                     </a>
                 </li>
                 <li>
-                    <a href="data-peminjaman.php">
+                    <a href="index.php?content=data-peminjaman">
                         <p>Data Peminjaman</p>
                     </a>
                 </li>
                 <li>
-                    <a href="Data Karyawan">
+                    <a href="index.php?content=data-karyawan">
                         <p>Data Karyawan</p>
                     </a>
                 </li>
                 <li>
-                    <a href="laporan-kehilangan.php">
+                    <a href="index.php?content=laporan-kehilangan">
                         <p>Laporan Kehilangan</p>
                     </a>
                 </li>
                 <li>
-                    <a href="data-denda.php">
+                    <a href="index.php?content=data-denda">
                         <p>Data Denda</p>
                     </a>
                 </li>
 				<li>
-                    <a href="laporan-kunjungan.php">
+                    <a href="index.php?content=laporan-kunjungan">
                         <p>Laporan Kunjungan</p>
                     </a>
                 </li>
