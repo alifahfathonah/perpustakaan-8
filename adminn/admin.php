@@ -27,6 +27,10 @@ include '../config/koneksi.php';
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="assets/css/demo.css" rel="stylesheet" />
+   <link rel="stylesheet" href="../fontawesome/css/fontawesome.min.css">
+
+   <script src="/assets/js/jquery.3.2.1.min.js"></script>
+   <script src="assets/js/bootstrap.min.js"></script>
 
 
     <!--     Fonts and icons     -->
@@ -41,21 +45,18 @@ include '../config/koneksi.php';
 <div class="wrapper">
     <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
 
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <!-- <a href="http://www.creative-tim.com" class="simple-text"> -->
-                    PERPUSTAKAAN
+               <center> PERPUSTAKAAN</center>
             </div>
 
             <ul class="nav">
                 <li class="active">
+                </li>
+                <li>
+                    <a href="admin.php?content=home-admin">
+                        <p>Home</p>
+                    </a>
                 </li>
                  <li>
                     <a href="admin.php?content=data-buku">
@@ -101,11 +102,11 @@ include '../config/koneksi.php';
     	</div>
     </div>
 
-    <div class="main-panel">
+   <!--  <div class="main-panel"> -->
         <nav class="navbar navbar-default navbar-fixed">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">
+                    <a href="admin.php?content=akun">
                     <p>Account</p>
                     </a>
                 </li>
@@ -116,13 +117,14 @@ include '../config/koneksi.php';
                 </li>
             </ul>
         </nav>
-    </div>
+<!--     </div> -->
  <div>
  <?php
-        if ($content=='index')
-    include 'login.php'; 
-        else if ($content=='home-admin')
+
+        if ($content=='home-admin')
     include 'home-admin.php';
+        else if ($content=='akun')
+    include 'akun.php';
         else if ($content=='data-buku')
     include 'data-buku.php';
         else if ($content=='data-anggota')
