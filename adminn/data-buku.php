@@ -1,24 +1,31 @@
 <style>
-  table {
-      border-collapse: collapse;
-      width: 100%;
+  .table1 {
+    font-family: sans-serif;
+    color: #444;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #f2f5f7;
+  }
+ 
+  .table1 tr th{
+    background: #35A9DB;
+    color: #fff;
+    font-weight: normal;
+  }
+ 
+  .table1, th, td {
+    padding: 8px 20px;
+    text-align: center;
+  }
+ 
+  .table1 tr:hover {
+    background-color: #f5f5f5;
+  }
+ 
+  .table1 tr:nth-child(even) {
+    background-color: #f2f2f2;
   }
 
-  th, td {
-      text-align: left;
-      padding: 8px;
-  }
-
-  tr:nth-child(even){background-color: #bbdfed;}
-
-  th {
-      background-color: #3bacd6;
-      color: white;
-  }
-
-  td {
-    font-size: 14px;
-  }
 </style>
 <div class="main-panel">
 <div class="col-md-12" style="padding:0px">
@@ -40,7 +47,7 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-fw"></i>Tambah Buku</button>
     <br><br>
     <form class="form-horizontal" method="POST">
-      <table class="table table-striped">
+      <table class="table1 table-hover">
         <thead>
           <tr>
             <th>No</th>
