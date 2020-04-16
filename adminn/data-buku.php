@@ -41,13 +41,13 @@
     <div class="form-group" style="float: right;">
       <input size="34px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
       <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i></button>
-      <a href="admin.php?content=manajemen-user"><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
+      <a href=""><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
     </div>
   </form>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-fw"></i>Tambah Buku</button>
     <br><br>
     <form class="form-horizontal" method="POST">
-      <table class="table1 table-hover">
+      <table class="table1 table-striped">
         <thead>
           <tr>
             <th>No</th>
