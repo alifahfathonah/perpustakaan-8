@@ -30,13 +30,14 @@ include '../config/koneksi.php';
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="black" data-image="../img/bg1.jpg">
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-               <center> PERPUSTAKAAN</center>
+               <img width="30px" src="../img/logo.jpeg">
+               <div style="margin-top: -15%"><center> PERPUSTAKAAN</center>
+               <center><font size="1px">SMK PATRIOT 2 BEKASI</font></center></div>
             </div>
-
             <ul class="nav">
                 <li class="active">
                 </li>
@@ -85,6 +86,11 @@ include '../config/koneksi.php';
                         <p>Laporan Kunjungan</p>
                     </a>
                 </li>
+                <li>
+                    <a href="admin.php?content=manajemen-user">
+                        <p>Manajemen User</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
@@ -92,6 +98,11 @@ include '../config/koneksi.php';
    <!--  <div class="main-panel"> -->
         <nav class="navbar navbar-default navbar-fixed">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <span class="fa-stack fa-2x has-badge" data-count="99">
+                    <i class="fa fa-bell fa-stack-1x"></i>
+                    </span>
+                </li>
                 <li>
                     <a href="admin.php?content=akun">
                     <p>Account</p>
@@ -128,6 +139,9 @@ include '../config/koneksi.php';
     include 'data-denda.php';
         else if ($content=='laporan-kunjungan')
     include 'laporan-kunjungan.php';
+     else if ($content=='manajemen-user')
+    include 'manajemen-user.php';
+
 ?>
 </div>
  <div class="footer-bottom">
