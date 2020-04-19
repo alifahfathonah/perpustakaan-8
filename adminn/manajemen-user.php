@@ -58,7 +58,57 @@
           </tr>
         </thead>
         <tbody>
-          
+           <?php
+
+            include '../config/koneksi.php';
+                       error_reporting(0);
+
+                       $batas  = 8;
+                       $hal    = @$_GET['hal'];
+                       if (empty($hal)) {
+                         $posisi = 0;
+                         $hal    = 1;
+                       } else {
+                         $posisi = ($hal - 1) * $batas;
+                       }
+                       if($_SERVER['REQUEST_METHOD'] == "POST") {
+                         $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+                         if ($pencarian != '') {
+                           $sql = "SELECT id_user, no_induk, password, level FROM tbl_user WHERE no_induk LIKE '%$pencarian%'";
+                           $query = $sql;
+                           $queryJml = $sql;
+                         } else {
+                           $query = "SELECT id_user, no_induk, password, level FROM tbl_user LIMIT $posisi, $batas ";
+                           $queryJml = "SELECT id_user, no_induk, password, level FROM tbl_user";
+                           $no = $posisi + 1;
+                         }
+                       } else {
+                         $query = "SELECT id_user, no_induk, password, level FROM tbl_user LIMIT $posisi, $batas ";
+                         $queryJml = "SELECT id_user, no_induk, password, level FROM tbl_user";
+                         $no = $posisi + 1;
+                       }
+
+            $querydata = mysqli_query($konek, $query)or die(mysqli_error());
+                    if(mysqli_num_rows($querydata) == 0){ 
+                      echo '<tr><td colspan="4" align="center">Tidak ada data!</td></tr>';    
+                    }
+                      else
+                    { 
+                      $no = 1;        
+                      while($data = mysqli_fetch_array($querydata)){  
+                        echo '<tr>';
+                        echo '<td>'.$no.'</td>';
+                        echo '<td>'.$data['no_induk'].'</td>';
+                        echo '<td>'.$data['password'].'</td>';
+                        echo '<td>'.$data['level'].'</td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-user&&id_user='.$data['id_user'].'><i class="fa fa-edit fa-fw"></i></a></td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-user.php?id_user='.$data['id_user'].'><i class="fa fa-trash fa-fw"></i></a></td>';
+                        echo '</tr>';
+                        $no++;  
+                      }
+                    }
+              
+                ?>
         </tbody>
       </table>
     </form>

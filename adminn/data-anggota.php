@@ -56,18 +56,71 @@
             <th>Kelas</th>
             <th>Jurusan</th>
             <th>Agama</th>
-            <th>Alamat</th>
-            <th>Jenis Kelamin</th>
-            <th>Nomor Handphone</th>
-            <th>Email</th>
-            <th>Tahun Masuk</th>
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
         <tbody>
-          
+          <?php
+          error_reporting(0);
+
+            include '../config/koneksi.php';
+            $batas  = 8;
+            $hal    = @$_GET['hal'];
+            if (empty($hal)) {
+              $posisi = 0;
+              $hal    = 1;
+            } else {
+              $posisi = ($hal - 1) * $batas;
+            }
+            if($_SERVER['REQUEST_METHOD'] == "POST") {
+              $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+              if ($pencarian != '') {
+                $sql = "SELECT * FROM tbl_siswa WHERE status_siswa='1' AND nama_siswa LIKE '%$pencarian%' OR id_siswa LIKE '%$pencarian' OR no_induk LIKE '%$pencarian' OR jurusan LIKE '%$pencarian' OR kelas_siswa LIKE '%$pencarian' OR agama_siswa LIKE '%$pencarian' ORDER BY id_siswa DESC";
+                $query = $sql;
+                $queryJml = $sql;
+              } else {
+                $query = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_calon_murid DESC LIMIT $posisi, $batas ";
+                $queryJml = "SELECT * FROM tbl_siswa WHERE status='1' ORDER BY id_siswa DESC";
+                $no = $posisi + 1;
+              }
+            } else {
+              $query = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC LIMIT $posisi, $batas ";
+              $queryJml = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC";
+              $no = $posisi + 1;
+            }
+
+
+            $querydata = mysqli_query($konek, $query)or die(mysqli_error());
+                    if(mysqli_num_rows($querydata) == 0){
+                      echo '<tr><td colspan="12" align="center">Tidak ada data!</td></tr>';
+                    }
+                      else
+                    {
+                      $no = 1;
+                      while($data = mysqli_fetch_array($querydata)){
+                        echo '<tr>';
+                        echo '<td>'.$no.'</td>';
+                        echo '<td>'.$data['no_induk'].'</td>';
+                        echo '<td>'.$data['nama_siswa'].'</td>';
+                        echo '<td>'.$data['kelas_siswa'].'</td>';
+                        echo '<td>'.$data['jurusan'].'</td>';
+                        echo '<td>'.$data['agama_siswa'].'</td>';
+                        echo '<td  width="20"><center><a data-toggle="tooltip" data-placement="left" title="Lihat Data Lengkap" href=tu.php?content=edit-murid&&id_calon_murid='.$data['id_siswa'].'><i class="fa fa-bars fa-fw"></i></a></center></td>';
+                        echo '</tr>';
+                        $no++;
+                      }
+                    }
+
+                ?>
         </tbody>
       </table>
+       <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
     </form>
 </div>
 </div>
@@ -179,6 +232,7 @@
     </div>
     </div>
   </div>
+
 
 
 

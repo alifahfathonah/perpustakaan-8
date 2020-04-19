@@ -43,52 +43,50 @@ include '../config/koneksi.php';
                 </li>
                 <li>
                     <a href="admin.php?content=home-admin">
-                        <p>Home</p>
+                    <i class="fa fa-home fa-fw"></i>
+                    <p>Home</p>
                     </a>
                 </li>
                  <li>
                     <a href="admin.php?content=data-buku">
-                        <p>Data Buku</p>
+                    <i class="fa fa-clone fa-fw"></i>
+                    <p>Data Buku</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=data-anggota">
-                        <p>Data Anggota</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="admin.php?content=cetak-kartu-anggota">
-                        <p>Cetak Kartu Anggota</p>
+                    <i class="fa fa-clone fa-fw"></i>
+                    <p>Data Anggota</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=data-peminjaman">
-                        <p>Data Peminjaman</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="admin.php?content=data-karyawan">
-                        <p>Data Karyawan</p>
+                    <i class="fa fa-clone fa-fw"></i> 
+                    <p>Data Peminjaman</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=laporan-kehilangan">
-                        <p>Laporan Kehilangan</p>
+                    <i class="fa fa-database fa-fw"></i>
+                    <p>Laporan Kehilangan</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=data-denda">
-                        <p>Data Denda</p>
+                    <i class="fa fa-clone fa-fw"></i>
+                    <p>Data Denda</p>
                     </a>
                 </li>
 				<li>
                     <a href="admin.php?content=laporan-kunjungan">
-                        <p>Laporan Kunjungan</p>
+                    <i class="fa fa-database fa-fw"></i> 
+                    <p>Laporan Kunjungan</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=manajemen-user">
-                        <p>Manajemen User</p>
+                    <i class="fa fa-folder fa-fw"></i>
+                    <p>Manajemen User</p>
                     </a>
                 </li>
             </ul>
