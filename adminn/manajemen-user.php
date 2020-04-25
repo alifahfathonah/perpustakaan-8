@@ -74,17 +74,17 @@
                        if($_SERVER['REQUEST_METHOD'] == "POST") {
                          $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
                          if ($pencarian != '') {
-                           $sql = "SELECT id_user, no_induk, password, level FROM tbl_user WHERE no_induk LIKE '%$pencarian%'";
+                           $sql = "SELECT id_user, no_induk, password, id_level FROM tbl_user WHERE no_induk LIKE '%$pencarian%'";
                            $query = $sql;
                            $queryJml = $sql;
                          } else {
-                           $query = "SELECT id_user, no_induk, password, level FROM tbl_user LIMIT $posisi, $batas ";
-                           $queryJml = "SELECT id_user, no_induk, password, level FROM tbl_user";
+                           $query = "SELECT id_user, no_induk, password, id_level FROM tbl_user LIMIT $posisi, $batas ";
+                           $queryJml = "SELECT id_user, no_induk, password, id_level FROM tbl_user";
                            $no = $posisi + 1;
                          }
                        } else {
-                         $query = "SELECT id_user, no_induk, password, level FROM tbl_user LIMIT $posisi, $batas ";
-                         $queryJml = "SELECT id_user, no_induk, password, level FROM tbl_user";
+                         $query = "SELECT id_user, no_induk, password, id_level FROM tbl_user LIMIT $posisi, $batas ";
+                         $queryJml = "SELECT id_user, no_induk, password, id_level FROM tbl_user";
                          $no = $posisi + 1;
                        }
 
@@ -100,7 +100,7 @@
                         echo '<td>'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
                         echo '<td>'.$data['password'].'</td>';
-                        echo '<td>'.$data['level'].'</td>';
+                        echo '<td>'.$data['id_level'].'</td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-user&&id_user='.$data['id_user'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-user.php?id_user='.$data['id_user'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';

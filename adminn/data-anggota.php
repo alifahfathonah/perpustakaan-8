@@ -42,6 +42,7 @@
       <input size="34px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
       <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i></button>
       <a href=""><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
+      <a target ="_blank" role="button" href="print-data-anggota.php"><button type="button" class="btn btn-success"><i class="fa fa-print fa-fw"></i></button></a>
     </div>
   </form>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-fw"></i>Tambah Anggota</button>
@@ -105,7 +106,7 @@
                         echo '<td>'.$data['kelas_siswa'].'</td>';
                         echo '<td>'.$data['jurusan'].'</td>';
                         echo '<td>'.$data['agama_siswa'].'</td>';
-                        echo '<td  width="20"><center><a data-toggle="tooltip" data-placement="left" title="Lihat Data Lengkap" href=tu.php?content=edit-murid&&id_calon_murid='.$data['id_siswa'].'><i class="fa fa-bars fa-fw"></i></a></center></td>';
+                        echo '<td  width="20" colspan="2"><center><a data-toggle="tooltip" data-placement="left" title="Lihat Data Lengkap" href=tu.php?content=edit-murid&&id_calon_murid='.$data['id_siswa'].'><i class="fa fa-bars fa-fw"></i></a></center></td>';
                         echo '</tr>';
                         $no++;
                       }
@@ -219,10 +220,14 @@
           </div>
       </div>
       <div class="form-group">
-          <label class="control-label col-sm-4"></label>
+         <label class="control-label col-sm-4"></label>
+         <div class="col-sm-6" align="right">
+            <a target ="_blank" role="button" href="print-data-calon-murid-detail.php?id_calon_murid=<?php echo $data['id_calon_murid']; ?>"><button type="button" class="btn btn-success btn-md"><i class="fa fa-print fa-fw"></i> Print</button></a>&nbsp;&nbsp;<button type="button" class="btn btn-primary">Simpan</button></a></p>
+          </div>
+        <!--   <label class="control-label col-sm-4"></label>
           <div class="col-sm-6" align="right">
             <button class="btn btn-primary">Simpan</button>
-          </div>
+          </div> -->
       </div>
     </form>
     </div>

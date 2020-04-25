@@ -49,19 +49,19 @@ include '../config/koneksi.php';
                 </li>
                  <li>
                     <a href="admin.php?content=data-buku">
-                    <i class="fa fa-clone fa-fw"></i>
+                    <i class="fa fa-clipboard fa-fw"></i>
                     <p>Data Buku</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=data-anggota">
-                    <i class="fa fa-clone fa-fw"></i>
+                    <i class="fa fa-clipboard fa-fw"></i>
                     <p>Data Anggota</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=data-peminjaman">
-                    <i class="fa fa-clone fa-fw"></i> 
+                    <i class="fa fa-clipboard fa-fw"></i>
                     <p>Data Peminjaman</p>
                     </a>
                 </li>
@@ -73,7 +73,7 @@ include '../config/koneksi.php';
                 </li>
                 <li>
                     <a href="admin.php?content=data-denda">
-                    <i class="fa fa-clone fa-fw"></i>
+                    <i class="fa fa-clipboard fa-fw"></i>
                     <p>Data Denda</p>
                     </a>
                 </li>

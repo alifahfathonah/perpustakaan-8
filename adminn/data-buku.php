@@ -61,9 +61,69 @@
           </tr>
         </thead>
         <tbody>
-          
+          <?php
+
+          include '../config/koneksi.php';
+                       error_reporting(0);
+
+                       $batas  = 8;
+                       $hal    = @$_GET['hal'];
+                       if (empty($hal)) {
+                         $posisi = 0;
+                         $hal    = 1;
+                       } else {
+                         $posisi = ($hal - 1) * $batas;
+                       }
+                       if($_SERVER['REQUEST_METHOD'] == "POST") {
+                         $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+                         if ($pencarian != '') {
+                           $sql = "SELECT id_buku, judul, nama_penerbit, pengarang, tahun_terbit, gambar, jml_buku FROM tbl_buku WHERE judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' OR pengarang LIKE '%$pencarian%'";
+                           $query = $sql;
+                           $queryJml = $sql;
+                         } else {
+                           $query = "SELECT id_buku, judul, nama_penerbit, pengarang, tahun_terbit, gambar, jml_buku FROM tbl_buku LIMIT $posisi, $batas ";
+                           $queryJml = "SELECT id_buku, judul, nama_penerbit, pengarang, tahun_terbit, gambar, jml_buku FROM tbl_buku";
+                           $no = $posisi + 1;
+                         }
+                       } else {
+                         $query = "SELECT id_buku, judul, nama_penerbit, pengarang, tahun_terbit, gambar, jml_buku FROM tbl_buku LIMIT $posisi, $batas ";
+                         $queryJml = "SELECT id_buku, judul, nama_penerbit, pengarang, tahun_terbit, gambar, jml_buku FROM tbl_buku";
+                         $no = $posisi + 1;
+                       }
+
+            $querydata = mysqli_query($konek, $query)or die(mysqli_error());
+                    if(mysqli_num_rows($querydata) == 0){ 
+                      echo '<tr><td colspan="8" align="center">Tidak ada data!</td></tr>';    
+                    }
+                      else
+                    { 
+                      $no = 1;        
+                      while($data = mysqli_fetch_array($querydata)){  
+                        echo '<tr>';
+                        echo '<td>'.$no.'</td>';
+                        echo '<td>'.$data['judul'].'</td>';
+                        echo '<td>'.$data['nama_penerbit'].'</td>';
+                        echo '<td>'.$data['pengarang'].'</td>';
+                        echo '<td>'.$data['tahun_terbit'].'</td>';
+                        echo '<td>'.$data['gambar'].'</td>';
+                        echo '<td>'.$data['jml_buku'].'</td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-buku&&id_buku='.$data['id_buku'].'><i class="fa fa-edit fa-fw"></i></a></td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-buku.php?id_buku='.$data['id_buku'].'><i class="fa fa-trash fa-fw"></i></a></td>';
+                        echo '</tr>';
+                        $no++;  
+                      }
+                    }
+              
+                ?>
         </tbody>
       </table>
+          <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
     </form>
 </div>
 </div>
