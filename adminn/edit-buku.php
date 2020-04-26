@@ -12,52 +12,54 @@
 
 ?>
 
-<div class="col-md-10" style="padding:0px">
+<div class="main-panel">
+<div class="col-md-12" style="padding:0px">
     <ol class="breadcrumb" style="margin:0;border-radius:0;">
         <li class="active"><a href="admin.php?content=home-admin">Home</a> / Edit Data Buku</li>
     </ol>
 </div>
 
-<div class="col-md-10" style="min-height:500px">
+<div class="col-md-12" style="min-height:500px">
     <hr> 
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" action="../config/edit-keterangan-buku.php"  method="POST">
           <div class="panel-group">
           <div class="panel panel-primary">
             <div class="panel-heading">Edit Data Buku</div>
             <div class="panel-body">
               <table class="table table-bordered">
-                <input type="hidden" name="id_buku">
+                <input type="text" name="id_buku" value="<?php echo $id_buku ?>">
                 <tr>
                   <tr>
                   <th><font size="2px">Judul</font></th>
-                  <td width="800"><i><font size="2px"><?php echo $data['judul'];?></font></i></td>
+                  <td width="800"><input class="form-control" name="judul" type="text" value="<?php echo $data['judul']; ?>" required></td>
                 </tr>
                 <tr>
                   <th><font size="2px">Nama Penerbit</font></th>
-                  <td><font size="2px"><i><?php echo $data['nama_penerbit']; ?></i></font></td>
+                  <td><input class="form-control" name="nama_penerbit" type="text" value="<?php echo $data['nama_penerbit']; ?>" required></td>
                 </tr>
                 <tr>
-                  <th><font size="2px"></font></th>
-                  <td><font size="2px"><i><?php echo $data['pengarang']; ?></i></font></td>
+                  <th><font size="2px">Pengarang</font></th>
+                  <td><input class="form-control" name="pengarang" type="text" value="<?php echo $data['pengarang']; ?>" required></td>
                 </tr>
                 <tr>
-                  <th><font size="2px">Nama Penerbit</font></th>
-                  <td><font size="2px"><i><?php echo $data['tahun_terbit']; ?></i></font></td>
+                  <th><font size="2px">Tahun Terbit</font></th>
+                  <td><input class="form-control" name="tahun_terbit" type="text" value="<?php echo $data['tahun_terbit']; ?>" required></td>
                 </tr>
                 <tr>
-                  <th><font size="2px">Nama Penerbit</font></th>
-                  <td><font size="2px"><i><?php echo $data['gambar']; ?></i></font></td>
+                  <th><font size="2px">Gambar</font></th>
+                  <td><input class="form-control" name="gambar" type="text" value="<?php echo $data['gambar']; ?>" required></td>
                 </tr>
                 <tr>
-                  <th><font size="2px">Nama Penerbit</font></th>
-                  <td><font size="2px"><i><?php echo $data['jml_buku']; ?></i></font></td>
+                  <th><font size="2px">Jumlah Buku</font></th>
+                  <td><input class="form-control" name="jml_buku" type="text" value="<?php echo $data['jml_buku']; ?>" required></td>
                 </tr>
               </table>
               <p align="right">
-                <button type="submit" formaction="../config/update-buku.php?id_buku=<?php echo $data['id_buku'] ?>" class="btn btn-primary">Simpan</button>
-                <a href="kepsek.php?content=data-request-kelas"><button type="button" class="btn btn-default">Kembali</button></a></p>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <a href="admin.php?content=data-buku"><button type="button" class="btn btn-default">Kembali</button></a></p>
             </div>
           </div>
       </form>
   </div>
+</div>
 </div>

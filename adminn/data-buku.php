@@ -138,8 +138,8 @@
             <p align="center"><font size="2px"><i>Sistem Informasi Perpustakaan SMK Patriot 2 Bekasi</i></font></p>
             <h4 class="modal-title" align="center"><b>Tambahkan Buku</b></h4>
           </div>
-      <div class="modal-body">
-          <form action="" class="form-horizontal" method="POST">
+      <div class="modal-body" >
+          <form action="../config/add-buku.php" class="form-horizontal" method="POST">
           <div class="form-group">
             <label class="col-sm-2"></label>
             <label class="col-sm-2">Judul</label>
@@ -153,7 +153,7 @@
           <label class="col-sm-2">Nama Penerbit</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="nama-penerbit" placeholder="Nama Penerbit" required>
+            <input type="text" class="form-control" name="nama_penerbit" placeholder="Nama Penerbit" required>
           </div>
       </div>
       <div class="form-group">
@@ -169,7 +169,7 @@
           <label class="col-sm-2">Tahun Terbit</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="tahun-terbit" placeholder="Tahun Terbit" required>
+            <input type="text" class="form-control" name="tahun_terbit" placeholder="Tahun Terbit" required>
           </div>
       </div>
       <div class="form-group">
@@ -178,7 +178,7 @@
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
             <input class="form-control" type="file" name="file" >
-            <input class="btn-warning" type="submit" name="upload" value="Upload">
+     <!--        <input class="btn-warning" type="submit" name="upload" value="Upload"> -->
           </div>
       </div>
       <div class="form-group">
@@ -186,7 +186,7 @@
           <label class="col-sm-2">Jumlah Buku</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="jumlah_buku" placeholder="Jumlah Buku" required>
+            <input type="text" class="form-control" name="jml_buku" placeholder="Jumlah Buku" required>
           </div>
       </div>
       <div class="form-group">

@@ -97,18 +97,18 @@ include '../config/koneksi.php';
         <nav class="navbar navbar-default navbar-fixed">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <span class="fa-stack fa-2x has-badge" data-count="99">
-                    <i class="fa fa-bell fa-stack-1x"></i>
-                    </span>
+                    <a>
+                    <p> <span class="glyphicon glyphicon-bell"></span> Notification</p>
+                    </a>
                 </li>
                 <li>
                     <a href="admin.php?content=akun">
-                    <p>Account</p>
+                    <p> <span class="glyphicon glyphicon-user"></span> Account</p>
                     </a>
                 </li>
                 <li>
                 <a href="../config/logout.php">
-                <p>Logout</p>
+                <p> <span class="glyphicon glyphicon-log-out"></span> Logout</p>
                 </a>
                 </li>
             </ul>
@@ -137,8 +137,11 @@ include '../config/koneksi.php';
     include 'data-denda.php';
         else if ($content=='laporan-kunjungan')
     include 'laporan-kunjungan.php';
-     else if ($content=='manajemen-user')
+        else if ($content=='manajemen-user')
     include 'manajemen-user.php';
+        else if ($content=='edit-buku')
+    include 'edit-buku.php';
+
 
 ?>
 </div>
