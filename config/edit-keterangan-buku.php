@@ -17,7 +17,7 @@
 	if ($update)
     	{
     		echo "<br><br><br><strong><center><i>Berhasil Edit Data Buku!";
-    		echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../adminn/admin.php?content=data-buku">';
+    		echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/admin.php?content=data-buku">';
     	}
 	else {
     		print"

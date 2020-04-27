@@ -8,7 +8,6 @@
 	$nama_penerbit	= $_POST["nama_penerbit"];
 	$pengarang		= $_POST["pengarang"];
 	$tahun_terbit	= $_POST["tahun_terbit"];
-	$gambar			= $_POST["gambar"];
 	$jml_buku		= $_POST["jml_buku"];
 
 	var_dump($check);
@@ -36,9 +35,8 @@
 	}
 	// Allow certain file formats
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	&& $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "JPEG"
-	&& $imageFileType != "GIF" ) {
-	    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+	&& $imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "JPEG") {
+	    echo "Sorry, only JPG, JPEG, & PNG files are allowed.";
 	    $uploadOk = 0;
 	}
 	// Check if $uploadOk is set to 0 by an error
@@ -54,11 +52,12 @@
 	    }
 	}
 
-	$insert = "INSERT INTO tbl_buku VALUES ('','$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$gambar', '$jml_buku')";
+	$insert = "INSERT INTO tbl_buku VALUES ('','$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
+
 
 	$simpan			= mysqli_query($konek, $insert)or die(mysqli_error($konek));
 
 	echo "<br><br><br><strong><center><i>Anda berhasil menambahkan data buku!";
-	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../adminn/admin.php?content=data-buku">';
+	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/admin.php?content=data-buku">';
 
 ?>

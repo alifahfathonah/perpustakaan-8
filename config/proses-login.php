@@ -26,14 +26,14 @@ if($jlhrecord > 0){
 
 	//redirect level
 		if($id_level == 1){
-			header('Location:../adminn/admin.php?content=home-admin');
+			header('Location:../admin/admin.php?content=home-admin');
 		}
 }
 
 else{
 
 	echo "<br><br><br><strong><center><i>Maaf anda gagal login. Mungkin Username atau Password yang anda masukkan salah.<br>Silahkan masukkan Username atau Password dengan benar!";
-	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "2; URL=../adminn/index.php">';  
+	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "2; URL=../admin/index.php">';  
 }
 
 ?>

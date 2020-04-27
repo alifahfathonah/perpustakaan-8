@@ -9,4 +9,4 @@ if($out)
 }
 ?>
 
-<META HTTP-EQUIV="REFRESH" CONTENT = '1;url=../adminn/index.php'>
+<META HTTP-EQUIV="REFRESH" CONTENT = '1;url=../admin/index.php'>
