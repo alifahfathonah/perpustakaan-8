@@ -142,48 +142,48 @@
       <div class="modal-body" >
           <form action="../config/add-buku.php" class="form-horizontal" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <label class="col-sm-2"></label>
-            <label class="col-sm-2">Judul</label>
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">Judul</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
               <input type="text" class="form-control" name="judul" placeholder="Judul" required>
             </div>
           </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Nama Penerbit</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Nama Penerbit</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" name="nama_penerbit" placeholder="Nama Penerbit" required>
           </div>
       </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Pengarang</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Pengarang</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" name="pengarang" placeholder="Pengarang" required>
           </div>
       </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Tahun Terbit</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Tahun Terbit</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" name="tahun_terbit" placeholder="Tahun Terbit" required>
           </div>
       </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Gambar</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Gambar</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
              <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
           </div>
       </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Jumlah Buku</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Jumlah Buku</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" name="jml_buku" placeholder="Jumlah Buku" required>

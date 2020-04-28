@@ -140,25 +140,25 @@
           <form action="../config/add-anggota.php" class="form-horizontal" method="POST">
           <div class="form-group">
             <label class="col-sm-1"></label>
-            <label class="col-sm-2">Nomor Induk</label>
+            <label class="col-sm-3">Nomor Induk</label>
             <label class="col-sm-1">:</label>
-            <div class="col-sm-7">
+            <div class="col-sm-6">
               <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
             </div>
           </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Nama Lengkap</label>
+          <label class="col-sm-3">Nama Lengkap</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="nama_siswa" placeholder="Nama Lengkap" required>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Kelas</label>
+          <label class="col-sm-3">Kelas</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <select class="form-control" id="sel1">
               <option value="X">X</option>
               <option value="XI">XI</option>
@@ -168,9 +168,9 @@
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Jurusan</label>
+          <label class="col-sm-3">Jurusan</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <select class="form-control" id="sel1">
               <option value="Otomatisasi Tata Kelola Perkantoran">Otomatisasi Tata Kelola Perkantoran</option>
               <option value="Bisnis Daring dan Pemasaran">Bisnis Daring dan Pemasaran</option>
@@ -179,57 +179,57 @@
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Agama</label>
+          <label class="col-sm-3">Agama</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="comment" class="form-control" name="agama_siswa" placeholder="Agama" required>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Alamat</label>
+          <label class="col-sm-3">Alamat</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <textarea class="form-control" rows="5" id="comment" Placeholder="Alamat" name="alamat_siswa" required></textarea>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Jenis Kelamin</label>
+          <label class="col-sm-3">Jenis Kelamin</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
              <input type="radio" class="form-check-input" name="jk_siswa"  value="Laki-Laki" >Laki-Laki
               <input type="radio" class="form-check-input" name="jk_siswa"  value="Perempuan">Perempuan
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">No Handphone</label>
+          <label class="col-sm-3">No Handphone</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="hp_siswa" placeholder="No Handphone" required>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Email</label>
+          <label class="col-sm-3">Email</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="email_siswa" placeholder="e.g tuti12@gmail.com" required>
           </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-2">Tahun Masuk</label>
+          <label class="col-sm-3">Tahun Masuk</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-7">
+          <div class="col-sm-6">
             <input type="text" class="form-control" name="tahun_masuk" placeholder="Tahun Masuk" required>
             <input type="hidden" name="status_siswa" value="1">
           </div>
       </div>
       <div class="form-group">
          <label class="control-label col-sm-4"></label>
-         <div class="col-sm-7" align="right">
+         <div class="col-sm-6" align="right">
            <button type="submit" class="btn btn-primary">Simpan</button></a></p>
           </div>
       </div>

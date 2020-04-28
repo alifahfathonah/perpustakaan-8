@@ -59,7 +59,60 @@
           </tr>
         </thead>
         <tbody>
-          
+          <?php
+
+           error_reporting(0);
+
+            include '../config/koneksi.php';
+
+            $batas  = 10;
+            $hal    = @$_GET['hal'];
+            if (empty($hal)) {
+              $posisi = 0;
+              $hal    = 1;
+            } else {
+              $posisi = ($hal - 1) * $batas;
+            }
+            if($_SERVER['REQUEST_METHOD'] == "POST") {
+              $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+              if ($pencarian != '') {
+                $sql = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman AND tbl_denda.id_peminjaman LIKE '%$pencarian%'";
+                $query = $sql;
+                $queryJml = $sql;
+              } else {
+                $query = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman LIMIT $posisi, $batas ";
+                $queryJml = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman";
+                $no = $posisi + 1;
+              }
+            } else {
+              $query ="SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman LIMIT $posisi, $batas ";
+              $queryJml = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman";
+              $no = $posisi + 1;
+            }
+
+            $querydata = mysqli_query($konek, $query)or die(mysqli_error());
+                    if(mysqli_num_rows($querydata) == 0){
+                      echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
+                    }
+                      else
+                    {
+                      $no = 1;
+                      while($data = mysqli_fetch_array($querydata)){
+                        echo '<tr>';
+                        echo '<td>'.$no.'</td>';
+                        echo '<td>'.$data['jml_denda'].'</td>';
+                        echo '<td>'.$data['status_denda'].'</td>';
+                        echo '<td>'.$data['no_induk'].'</td>';
+                        echo '<td>'.$data['tgl_peminjaman'].'</td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-denda&&id_denda='.$data['id_denda'].'&&id_peminjaman='.$data['id_peminjaman'].'><i class="fa fa-edit fa-fw"></i></a></td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-denda.php?id_denda='.$data['id_denda'].'><i class="fa fa-trash fa-fw"></i></a></td>';
+                        echo '</tr>';
+                        $no++;
+                      }
+                    }
+
+                ?>
+
         </tbody>
       </table>
     </form>
