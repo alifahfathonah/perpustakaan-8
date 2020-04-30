@@ -7,10 +7,9 @@
     $nama_penerbit  = $_POST['nama_penerbit'];
     $pengarang      = $_POST['pengarang'];
     $tahun_terbit   = $_POST['tahun_terbit'];
-    $gambar         = $_POST['gambar'];
     $jml_buku       = $_POST['jml_buku'];
 
-    $update     = "UPDATE tbl_buku SET judul='$judul', nama_penerbit='$nama_penerbit', pengarang='$pengarang', tahun_terbit='$tahun_terbit', gambar='$gambar', jml_buku='$jml_buku' WHERE id_buku='$id_buku'";
+    $update     = "UPDATE tbl_buku SET judul='$judul', nama_penerbit='$nama_penerbit', pengarang='$pengarang', tahun_terbit='$tahun_terbit', jml_buku='$jml_buku' WHERE id_buku='$id_buku'";
 
 	$update	= mysqli_query($konek, $update)or die(mysqli_error());
 

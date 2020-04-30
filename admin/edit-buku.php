@@ -27,7 +27,7 @@
             <div class="panel-heading">Edit Data Buku</div>
             <div class="panel-body">
               <table class="table table-bordered">
-                <input type="text" name="id_buku" value="<?php echo $id_buku ?>">
+                <input type="hidden" name="id_buku" value="<?php echo $id_buku ?>">
                 <tr>
                   <tr>
                   <th><font size="2px">Judul</font></th>
@@ -47,7 +47,9 @@
                 </tr>
                 <tr>
                   <th><font size="2px">Gambar</font></th>
-                  <td><input class="form-control" name="gambar" type="text" value="<?php echo $data['gambar']; ?>" required></td>
+                  <td>
+                  <a data-toggle="tooltip" data-placement="right" title="Lihat Gambar" href="<?php echo $data['gambar'] ?>" target="_blank"><img width="70" height="50" src="<?php echo $data['gambar'] ?>"></a>
+                  </td>
                 </tr>
                 <tr>
                   <th><font size="2px">Jumlah Buku</font></th>

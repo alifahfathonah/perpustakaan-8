@@ -2,9 +2,9 @@
 
 	include 'koneksi.php';
 
-	$id_peminjaman = $_GET ['id_peminjaman'];
+	$id_pinjam = $_GET ['id_pinjam'];
 
-	$hapus 	 = "DELETE FROM tbl_peminjaman WHERE id_peminjaman='$id_peminjaman'";
+	$hapus 	 = "DELETE FROM tbl_pinjam WHERE id_pinjam='$id_pinjam'";
 	$query	 = mysqli_query($konek, $hapus);
 
 	if ($query)

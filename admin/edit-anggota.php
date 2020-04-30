@@ -21,7 +21,7 @@
 <div class="col-md-12" style="min-height:500px">
   <h3><b>Data Lengkap</b> Anggota</h3>
     <hr>
-    <form class="form-horizontal" action="../config/update-anggota.php" method="POST">
+    <form class="form-horizontal" action="../config/edit-keterangan-anggota.php" method="POST">
     <input type="hidden" name="id_siswa" value="<?php echo $id_siswa?>">
     <div class="panel-group">
     <div class="panel panel-primary">

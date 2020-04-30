@@ -143,6 +143,8 @@ include '../config/koneksi.php';
     include 'edit-buku.php';
          else if ($content=='edit-anggota')
     include 'edit-anggota.php';
+         else if ($content=='edit-peminjaman')
+    include 'edit-peminjaman.php';
 
 
 ?>

@@ -2,15 +2,15 @@
 
 	include 'koneksi.php';
 
-    $tgl_peminjaman         = $_POST['tgl_peminjaman'];
-    $tgl_pengembalian       = $_POST['tgl_pengembalian'];
-    $no_induk               = $_POST['no_induk'];
-    $status_buku            = $_POST['status_buku'];
-    $judul                  = $_POST['judul'];
-    $jml_buku               = $_POST['jml_buku'];
-
-    $update     = "UPDATE tbl_peminjaman SET tgl_peminjaman='$tgl_peminjaman', tgl_pengembalian='$tgl_pengembalian', no_induk='$no_induk', status_buku='$status_buku', judul='$judul', jml_buku='$jml_buku' WHERE id_peminjaman='$id_peminjaman'";
-
+    $id_pinjam         = $_POST['id_pinjam'];
+    $tgl_pinjam        = $_POST['tgl_pinjam'];
+    $tgl_kembali       = $_POST['tgl_kembali'];
+    $no_induk          = $_POST['no_induk'];
+    $status_buku       = $_POST['status_buku'];
+    $jml_pinjam        = $_POST['jml_pinjam'];
+    $id_buku           = $_POST['judul'];
+    
+    $update     = "UPDATE tbl_pinjam SET tgl_pinjam='$tgl_pinjam', tgl_kembali='$tgl_kembali', no_induk='$no_induk', status_buku='$status_buku', jml_pinjam='$jml_pinjam', id_buku='$id_buku' WHERE id_pinjam='$id_pinjam'"; 
 	$update	= mysqli_query($konek, $update)or die(mysqli_error());
 
 	if ($update)

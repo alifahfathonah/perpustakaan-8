@@ -10,7 +10,6 @@
 	$tahun_terbit	= $_POST["tahun_terbit"];
 	$jml_buku		= $_POST["jml_buku"];
 
-	var_dump($check);
 	$target_dir = "../galeri/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$uploadOk = 1;
@@ -53,6 +52,7 @@
 	}
 
 	$insert = "INSERT INTO tbl_buku VALUES ('','$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
+
 
 
 	$simpan			= mysqli_query($konek, $insert)or die(mysqli_error($konek));
