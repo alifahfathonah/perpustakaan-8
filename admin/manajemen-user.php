@@ -52,6 +52,7 @@
           <tr>
             <th>No</th>
             <th>No Induk</th>
+            <th>Nama Lengkap</th>
             <th>Password</th>
             <th>Level</th>
             <th colspan="2"><center>Action</center></th>
@@ -74,23 +75,23 @@
                        if($_SERVER['REQUEST_METHOD'] == "POST") {
                          $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
                          if ($pencarian != '') {
-                           $sql = "SELECT id_user, no_induk, password, id_level FROM tbl_user WHERE no_induk LIKE '%$pencarian%'";
+                           $sql = "SELECT DISTINCT Tbl_user.id_user, Tbl_user.no_induk, Tbl_user.nama, Tbl_user.password, tbl_level.level FROM tbl_user, tbl_level WHERE tbl_level.id_level=tbl_user.id_level AND no_induk LIKE '%$pencarian%'";
                            $query = $sql;
                            $queryJml = $sql;
                          } else {
-                           $query = "SELECT id_user, no_induk, password, id_level FROM tbl_user LIMIT $posisi, $batas ";
-                           $queryJml = "SELECT id_user, no_induk, password, id_level FROM tbl_user";
+                           $query = "SELECT DISTINCT Tbl_user.id_user, Tbl_user.no_induk, Tbl_user.nama, Tbl_user.password, tbl_level.level FROM tbl_user, tbl_level WHERE tbl_level.id_level=tbl_user.id_level LIMIT $posisi, $batas ";
+                           $queryJml = "SELECT DISTINCT Tbl_user.id_user, Tbl_user.no_induk, Tbl_user.nama, Tbl_user.password, tbl_level.level FROM tbl_user, tbl_level WHERE tbl_level.id_level=tbl_user.id_level";
                            $no = $posisi + 1;
                          }
                        } else {
-                         $query = "SELECT id_user, no_induk, password, id_level FROM tbl_user LIMIT $posisi, $batas ";
-                         $queryJml = "SELECT id_user, no_induk, password, id_level FROM tbl_user";
+                         $query = "SELECT DISTINCT Tbl_user.id_user, Tbl_user.no_induk, Tbl_user.nama, Tbl_user.password, tbl_level.level FROM tbl_user, tbl_level WHERE tbl_level.id_level=tbl_user.id_level LIMIT $posisi, $batas ";
+                         $queryJml = "SELECT DISTINCT Tbl_user.id_user, Tbl_user.no_induk, Tbl_user.nama, Tbl_user.password, tbl_level.level FROM tbl_user, tbl_level WHERE tbl_level.id_level=tbl_user.id_level";
                          $no = $posisi + 1;
                        }
 
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                     if(mysqli_num_rows($querydata) == 0){ 
-                      echo '<tr><td colspan="4" align="center">Tidak ada data!</td></tr>';    
+                      echo '<tr><td colspan="5" align="center">Tidak ada data!</td></tr>';    
                     }
                       else
                     { 
@@ -99,8 +100,9 @@
                         echo '<tr>';
                         echo '<td>'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
+                        echo '<td>'. $data['nama'].'</td>';
                         echo '<td>'.$data['password'].'</td>';
-                        echo '<td>'.$data['id_level'].'</td>';
+                        echo '<td>'.$data['level'].'</td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-user&&id_user='.$data['id_user'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-user.php?id_user='.$data['id_user'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';
@@ -126,29 +128,48 @@
             <h4 class="modal-title" align="center"><b>Tambahkan User</b></h4>
           </div>
       <div class="modal-body">
-          <form action="" class="form-horizontal" method="POST">
+          <form action="../config/add-user.php" class="form-horizontal" method="POST">
           <div class="form-group">
-            <label class="col-sm-2"></label>
-            <label class="col-sm-2">Nomor Induk</label>
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">Nomor Induk</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" name="no-induk" placeholder="e.g. 888192812" required>
+              <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
             </div>
           </div>
-      <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Password</label>
+       <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Nama Lengkap</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="Password" class="form-control" name="Password" placeholder="Password" required>
+            <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" required>
           </div>
       </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Level</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Password</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="level" placeholder="level" required>
+            <input type="Password" class="form-control" name="password" placeholder="Password" required>
+          </div>
+      </div>
+      <div class="form-group">  
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Level</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+           <!--  <input type="text" class="form-control" name="level" placeholder="level" required> -->
+            <select class="form-control" name="level" aria-describedby="basic-addon1" required>
+                    <?php
+                    $bar = "SELECT * FROM tbl_level";
+                    $querybar = mysqli_query($konek,$bar);
+                    while ($baru = mysqli_fetch_assoc($querybar)) { ?>
+                    <option value="<?php echo $baru['id_level'] ?>"> <?php echo $baru['level'] ?>
+                    </option>
+                    <?php
+                    }
+                    ?>
+                  </select> 
           </div>
       </div>
       <div class="form-group">

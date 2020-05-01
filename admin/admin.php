@@ -145,6 +145,10 @@ include '../config/koneksi.php';
     include 'edit-anggota.php';
          else if ($content=='edit-peminjaman')
     include 'edit-peminjaman.php';
+         else if ($content=='edit-user')
+    include 'edit-user.php';
+         else if ($content=='edit-denda')
+    include 'edit-denda.php';
 
 
 ?>

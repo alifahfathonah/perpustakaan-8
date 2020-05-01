@@ -10,7 +10,7 @@
 	$tgl_pinjam			= date('Y-m-d');
 	$tgl_kembali		= date('Y-m-d', strtotime('+14 day', strtotime($tgl_pinjam)));
     $no_induk           = $_POST['no_induk'];
-    $status_buku        = 0;
+    $status_buku        = $_POST['status_buku'];
     $jml_pinjam			= $_POST['jml_pinjam'];
     $id_buku			= $_POST['judul'];
 
@@ -27,7 +27,7 @@
     	$insert					= "INSERT INTO tbl_pinjam VALUES ('', '$tgl_pinjam', '$tgl_kembali', '$no_induk', '$status_buku', '$jml_pinjam', '$id_buku')";
 
 		$simpan					= mysqli_query($konek, $insert)or die(mysqli_error($konek));
-	
+
 		if ($simpan)
 		{
 			$querydata = "SELECT * FROM tbl_buku WHERE id_buku='$id_buku'";

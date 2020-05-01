@@ -51,9 +51,8 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Jumlah Denda</th>
-            <th>Status Denda</th>
             <th>Nomor Induk</th>
+            <th>Jumlah Denda</th>
             <th>Tanggal Peminjaman</th>
             <th colspan="2"><center>Action</center></th>
           </tr>
@@ -76,17 +75,17 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman AND tbl_denda.id_peminjaman LIKE '%$pencarian%'";
+                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIKE '%$pencarian%'";
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman LIMIT $posisi, $batas ";
-                $queryJml = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman";
+                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  AND status_denda='0' FROM tbl_dendaa, tbl_pinjam LIMIT $posisi, $batas ";
+                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0'";
                 $no = $posisi + 1;
               }
             } else {
-              $query ="SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_denda.id_denda, tbl_denda.jml_denda, tbl_denda.status_denda, tbl_peminjaman.no_induk, tbl_peminjaman.tgl_peminjaman,  FROM tbl_denda, tbl_peminjaman WHERE tbl_peminjaman.id_peminjaman=tbl_denda.id_peminjaman";
+              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
+              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0'";
               $no = $posisi + 1;
             }
 
@@ -100,10 +99,9 @@
                       while($data = mysqli_fetch_array($querydata)){
                         echo '<tr>';
                         echo '<td>'.$no.'</td>';
-                        echo '<td>'.$data['jml_denda'].'</td>';
-                        echo '<td>'.$data['status_denda'].'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
-                        echo '<td>'.$data['tgl_peminjaman'].'</td>';
+                        echo '<td>'.$data['jml_denda'].'</td>';
+                        echo '<td>'.$data['tgl_pinjam'].'</td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-denda&&id_denda='.$data['id_denda'].'&&id_peminjaman='.$data['id_peminjaman'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-denda.php?id_denda='.$data['id_denda'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';
@@ -130,39 +128,39 @@
             <h4 class="modal-title" align="center"><b>Tambahkan Denda</b></h4>
           </div>
       <div class="modal-body">
-          <form action="" class="form-horizontal" method="POST">
-          <div class="form-group">
-            <label class="col-sm-2"></label>
-            <label class="col-sm-2">Jumlah Denda</label>
-            <label class="col-sm-1">:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" name="jml-denda" placeholder="Jumlah Denda"required>
-            </div>
-          </div>
-      <div class="modal-body">
-          <form action="" class="form-horizontal" method="POST">
+          <form action="../config/add-denda.php" class="form-horizontal" method="POST">
+          <!--    <form action="" class="form-horizontal" method="POST">
           <div class="form-group">
             <label class="col-sm-2"></label>
             <label class="col-sm-2">Status Denda</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-              <input type="data-toggle" class="form-control" name="status-denda" placeholder="status-denda" required>
-            </div>
-      </div>
+              <input type="data-toggle" class="form-control" name="status_denda" placeholder="Status Denda" required>
+            </div>-->
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Nomor Induk</label>
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Nomor Induk</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="no-induk" placeholder="e.g. 888192812" required>
+            <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
           </div>
       </div>
       <div class="form-group">
-          <label class="col-sm-2"></label>
-          <label class="col-sm-2">Tanggal Peminjaman</label>
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">Jumlah Denda</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" name="jml_denda" placeholder="Jumlah Denda"required>
+            </div>
+          </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Tanggal Pinjam</label>
           <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-            <input type="data-toggle" class="form-control" name="tgl-peminjaman" required>
+          <div class="col-sm-5">   
+                    <input type="date" name="tgl_pinjam" value="<?php echo $data['id_pinjam'] ?>"> <?php echo $data['tgl_pinjam'] ?>
+                 
+            <input type="hidden" name="status_buku" value="0">
           </div>
       </div>
       <div class="form-group">
