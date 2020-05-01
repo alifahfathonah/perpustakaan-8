@@ -57,7 +57,7 @@
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody> 
           <?php
 
            error_reporting(0);
@@ -67,15 +67,15 @@
             $batas  = 10;
             $hal    = @$_GET['hal'];
             if (empty($hal)) {
-              $posisi = 0;
+              $posisi = 0; 
               $hal    = 1;
             } else {
               $posisi = ($hal - 1) * $batas;
-            }
+            } 
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIKE '%$pencarian%'";
+                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIKE '%$pencarian%'"; 
                 $query = $sql;
                 $queryJml = $sql;
               } else {
@@ -87,13 +87,13 @@
               $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
               $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0'";
               $no = $posisi + 1;
-            }
+            } 
 
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                     if(mysqli_num_rows($querydata) == 0){
                       echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
                     }
-                      else
+                      else 
                     {
                       $no = 1;
                       while($data = mysqli_fetch_array($querydata)){
@@ -102,7 +102,7 @@
                         echo '<td>'.$data['no_induk'].'</td>';
                         echo '<td>'.$data['jml_denda'].'</td>';
                         echo '<td>'.$data['tgl_pinjam'].'</td>';
-                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-denda&&id_denda='.$data['id_denda'].'&&id_peminjaman='.$data['id_peminjaman'].'><i class="fa fa-edit fa-fw"></i></a></td>';
+                        echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-denda&&id_denda='.$data['id_denda'].'&&id_pinjam='.$data['id_pinjam'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-denda.php?id_denda='.$data['id_denda'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';
                         $no++;
@@ -160,7 +160,7 @@
           <div class="col-sm-5">   
                     <input type="date" name="tgl_pinjam" value="<?php echo $data['id_pinjam'] ?>"> <?php echo $data['tgl_pinjam'] ?>
                  
-            <input type="hidden" name="status_buku" value="0">
+            <input type="hidden" name="status_denda" value="0"> 
           </div>
       </div>
       <div class="form-group">

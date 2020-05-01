@@ -7,7 +7,7 @@
     $id_denda    = $_GET['id_denda'];
     $id_pinjam   = $_GET['id_pinjam'];
 
-    $edit    = "SELECT * FROM tbl_dendaa WHERE id_denda = '$id_denda'";
+    $edit    = "SELECT * FROM tbl_dendaa, tbl_pinjam where tbl_dendaa.id_pinjam=tbl_pinjam.id_pinjam order by id_denda desc";
     $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
     $data    = mysqli_fetch_array($hasil);
 
@@ -43,7 +43,7 @@
             <div class="col-sm-5">
                 <input class="form-control" name="jml_denda" type="text" value="<?php echo $data['jml_denda']; ?>" required>
             </div>
-        </div>
+        </div> 
         <div class="form-group">
             <label class="col-sm-2"></label>
             <label class="col-sm-2">Tanggal Pinjam</label>
@@ -57,7 +57,7 @@
                     <?php
                     }
                     ?> -->
-                <input class="form-control" name="tgl_pinjam" type="date" value="<?php echo $data['tgl_pinjam']; ?>" required>
+                <input class="form-control" name="tgl_pinjam" type="date" value="<?php echo $data['tgl_pinjam']; ?>" required> 
             </div>
         </div>
         <div class="form-group">

@@ -10,7 +10,7 @@
     
     $update     = "UPDATE tbl_dendaa SET id_denda='$id_denda', jml_denda='$jml_denda', status_denda='$status_denda', id_pinjam='$id_pinjam' WHERE id_denda='$id_denda'"; 
 	$update	= mysqli_query($konek, $update)or die(mysqli_error());
-
+    
 	if ($update)
     	{
     		echo "<br><br><br><strong><center><i>Berhasil Edit Keterangan!";
