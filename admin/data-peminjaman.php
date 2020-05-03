@@ -82,7 +82,7 @@
                 $query = $sql; 
                 $queryJml = $sql;
               } else {
-                $query = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam tbl_buku.judul FROM tbl_pinjam, tbl_buk WHERE  status_buku='0' LIMIT $posisi, $batas ";
+                $query = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0' LIMIT $posisi, $batas ";
                 $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND  status_buku='0'";
                 $no = $posisi + 1;
               }

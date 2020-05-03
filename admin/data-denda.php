@@ -79,13 +79,14 @@
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  AND status_denda='0' FROM tbl_dendaa, tbl_pinjam LIMIT $posisi, $batas ";
-                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0'";
+                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0' LIMIT $posisi, $batas ";
+                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0'";
                 $no = $posisi + 1;
               }
             } else {
-              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0'";
+              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
+              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam  AND status_denda='0'";
+              
               $no = $posisi + 1;
             } 
 
@@ -160,7 +161,7 @@
           <div class="col-sm-5">   
                     <input type="date" name="tgl_pinjam" value="<?php echo $data['id_pinjam'] ?>"> <?php echo $data['tgl_pinjam'] ?>
                  
-            <input type="hidden" name="status_denda" value="0"> 
+            <input type="hidden" name="status_denda" value="0">  
           </div>
       </div>
       <div class="form-group">

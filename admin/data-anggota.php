@@ -81,7 +81,7 @@
                 $queryJml = $sql;
               } else {
                 $query = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC LIMIT $posisi, $batas ";
-                $queryJml = "SELECT * FROM tbl_siswa WHERE status='1' ORDER BY id_siswa DESC";
+                $queryJml = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC";
                 $no = $posisi + 1;
               }
             } else {
