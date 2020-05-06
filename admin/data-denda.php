@@ -75,17 +75,17 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.id_pinjam AND status_denda='0' LIKE '%$pencarian%'"; 
+                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE  status_denda='0' LIKE '%$pencarian%'"; 
                 $query = $sql;
                 $queryJml = $sql;
               } else {
                 $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0' LIMIT $posisi, $batas ";
-                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0'";
+                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0'";
                 $no = $posisi + 1;
               }
             } else {
-              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam  AND status_denda='0'";
+              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0' LIMIT $posisi, $batas ";
+              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0'";
               
               $no = $posisi + 1;
             } 

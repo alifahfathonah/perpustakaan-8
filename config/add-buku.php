@@ -51,7 +51,7 @@
 	    }
 	}
 
-	$insert = "INSERT INTO tbl_buku VALUES ('','$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
+	$insert = "INSERT INTO tbl_buku VALUES ('','$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku', '$sisa_buku')";
 
 
 

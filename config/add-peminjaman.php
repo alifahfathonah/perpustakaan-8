@@ -15,7 +15,8 @@
     $id_buku			= $_POST['judul'];
 
 
-    $querycek	= "SELECT SUM(jml_pinjam) as jumlah_pinjem FROM tbl_pinjam WHERE status_buku=0 AND no_induk=$no_induk";
+
+    $querycek	= "SELECT SUM(jml_pinjam) as jumlah_pinjem FROM tbl_pinjam WHERE status_buku=0 AND no_induk=$no_induk ";
     $query    	= mysqli_query($konek,$querycek)or die($konek);
     $sum 		= mysqli_fetch_array($query);
     

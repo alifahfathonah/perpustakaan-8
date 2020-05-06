@@ -159,7 +159,7 @@
           <label class="col-sm-3">Kelas</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="kelas_siswa">
               <option value="X">X</option>
               <option value="XI">XI</option>
               <option value="XII">XII</option>
@@ -171,7 +171,7 @@
           <label class="col-sm-3">Jurusan</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <select class="form-control" id="sel1">
+            <select class="form-control" id="sel1" name="jurusan">
               <option value="Otomatisasi Tata Kelola Perkantoran">Otomatisasi Tata Kelola Perkantoran</option>
               <option value="Bisnis Daring dan Pemasaran">Bisnis Daring dan Pemasaran</option>
             </select>

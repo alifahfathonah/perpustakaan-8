@@ -13,7 +13,7 @@
 
 
 	$simpan			= mysqli_query($konek, $insert)or die(mysqli_error($konek));
-
+	
 	echo "<br><br><br><strong><center><i>Anda berhasil menambahkan data denda!";
 	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/admin.php?content=data-denda">';
 

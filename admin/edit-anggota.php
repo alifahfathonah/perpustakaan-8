@@ -107,7 +107,7 @@
       </tr>
       
   </table>
-  <p align="right">
+  <p align="Right"><a target ="_blank" role="button" href="print-data-anggota-detail.php?id_siswa=<?php echo $data['id_siswa']; ?>"><button type="button" class="btn btn-success btn-md"><i class="fa fa-print fa-fw"></i> Print</button></a>
     <button type="submit" class="btn btn-primary">Simpan</button>
     <a href="admin.php?content=data-anggota"><button type="button" class="btn btn-default">Kembali</button></a></p>
 
