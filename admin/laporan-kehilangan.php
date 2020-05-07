@@ -54,7 +54,7 @@
               </tbody>
               </table>
               <p align="right">
-                <a target ="_blank" role="button" href="print-rekap.php"><button type="button" class="btn btn-success"><i class="fa fa-print fa-fw"></i> Print</button></a>  
+                <a target ="_blank" role="button" href="print-kehilangan.php"><button type="button" class="btn btn-success"><i class="fa fa-print fa-fw"></i> Print</button></a>  
               </p>
             </div>
           </div>
