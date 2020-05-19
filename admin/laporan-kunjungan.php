@@ -6,7 +6,7 @@
 </div>
 
 <div class="col-md-12" style="min-height:500px">
-  <h3><b>Laporan</b> Kehilangan </h3>
+  <h3><b>Laporan</b> Kunjungan </h3>
     <hr>
         <form class="form-horizontal" method="POST">
         <!-- <input type="hidden" name="id_pembayaran" value="<?php echo $id_pembayaran?>"> -->
@@ -20,6 +20,7 @@
                     <th>No</th>
                     <th>Tanggal Kunjungan</th>
                     <th>Nomor Induk</th>
+                    <th>Nama Anggota</th>
                 </thead>
                 <tbody>
                    <?php
@@ -27,7 +28,7 @@
                       include '../config/koneksi.php';
 
                       
-                      $query = mysqli_query($konek, "SELECT DISTINCT * FROM tbl_kunjungan")or die(mysqli_error($konek));
+                      $query = mysqli_query($konek, "SELECT DISTINCT tbl_kunjungan.id_kunjungan, tbl_kunjungan.tgl_kunjungan, tbl_kunjungan.no_induk, tbl_siswa.nama_siswa FROM tbl_kunjungan, tbl_siswa WHERE tbl_siswa.id_siswa=tbl_kunjungan.id_siswa")or die(mysqli_error($konek));
 
                               if(mysqli_num_rows($query) == 0){
                                 echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
@@ -40,6 +41,7 @@
                                   echo '<td width="50">'.$no.'</td>';
                                   echo '<td>'.$data['tgl_kunjungan'].'</td>';
                                   echo '<td>'.$data['no_induk'].'</td>';
+                                  echo '<td>'.$data['nama_siswa'].'</td>';
                                   $no++;
                                 }
                               }

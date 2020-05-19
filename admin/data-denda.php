@@ -75,7 +75,7 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE  status_denda='0' LIKE '%$pencarian%'"; 
+                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE  status_denda='0' AND no_induk LIKE '%$pencarian%'"; 
                 $query = $sql;
                 $queryJml = $sql;
               } else {
@@ -85,11 +85,10 @@
               }
             } else {
               $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0' LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0'";
+              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE  status_denda='0'";
               
               $no = $posisi + 1;
             } 
-
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                     if(mysqli_num_rows($querydata) == 0){
                       echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';

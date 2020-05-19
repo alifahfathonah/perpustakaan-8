@@ -31,7 +31,7 @@
             include '../config/koneksi.php';
 
             
-            $query = mysqli_query($konek, "SELECT DISTINCT * FROM tbl_kehilangan")or die(mysqli_error($konek));
+            $query = mysqli_query($konek, "SELECT DISTINCT * FROM tbl_hilang")or die(mysqli_error($konek));
 
                     if(mysqli_num_rows($query) == 0){
                       echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
@@ -43,6 +43,7 @@
                         echo '<tr>';
                         echo '<td width="50">'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
+                        echo '<td>'.$data['status_fc'].'</td>';
                         echo '<td>'.$data['tgl_hilang'].'</td>';
                         echo '<td>'.$data['tgl_fc'].'</td>';
                         echo '<td>'.$data['masa_berlaku'].'</td>';

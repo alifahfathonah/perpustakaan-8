@@ -57,6 +57,7 @@
             <th>Tahun Terbit</th>
             <th>Gambar</th>
             <th>Jumlah Buku</th>
+            <th>Sisa Buku</th>
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
@@ -77,7 +78,8 @@
                        if($_SERVER['REQUEST_METHOD'] == "POST") {
                          $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
                          if ($pencarian != '') {
-                           $sql = "SELECT * FROM tbl_buku WHERE judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' ORDER BY id_buku DESC";
+                           $sql = "SELECT * FROM tbl_buku WHERE id_buku AND judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' OR pengarang LIKE '%$pencarian%' ORDER BY id_buku DESC";
+
                               $query = $sql;
                               $queryJml = $sql;
                             } else {
@@ -106,6 +108,7 @@
                                         echo '<td>'.$data['tahun_terbit'].'</td>';
                                         echo '<td>'.$data['gambar'].'</td>';
                                         echo '<td>'.$data['jml_buku'].'</td>';
+                                        echo '<td>'.$data['sisa_buku'].'</td>';
                                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-buku&&id_buku='.$data['id_buku'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-buku.php?id_buku='.$data['id_buku'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                                         echo '</tr>';

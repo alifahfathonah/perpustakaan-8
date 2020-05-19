@@ -78,7 +78,7 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam,  tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND tbl_pinjam.id_buku AND status_buku='0' LIKE '%$pencarian%'";
+                $sql = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam,  tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND tbl_pinjam.id_buku AND status_buku='0' AND no_induk LIKE '%$pencarian%' OR judul LIKE '%$pencarian%'";
                 $query = $sql; 
                 $queryJml = $sql;
               } else {
