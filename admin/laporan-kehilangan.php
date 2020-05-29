@@ -18,11 +18,12 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nomor Induk</th>
-                    <th>Status Fotocopy</th>
+                    <th>NIS</th>
+                    <th>Nama</th>
                     <th>Tanggal Hilang</th>
-                    <th>Tanggal Fotocopy</th>
                     <th>Masa Berlaku</th>
+                    <th>Tanggal Pengembalian(Fotocopy)</th>
+                    <th>Keterangan</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,7 +32,7 @@
             include '../config/koneksi.php';
 
             
-            $query = mysqli_query($konek, "SELECT DISTINCT * FROM tbl_hilang")or die(mysqli_error($konek));
+            $query = mysqli_query($konek, "SELECT DISTINCT * FROM tbl_hilang WHERE status_fc='0'")or die(mysqli_error($konek));
 
                     if(mysqli_num_rows($query) == 0){
                       echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
@@ -43,10 +44,13 @@
                         echo '<tr>';
                         echo '<td width="50">'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
-                        echo '<td>'.$data['status_fc'].'</td>';
+                        echo '<td>'.$data['nama_siswa'].'</td>';
                         echo '<td>'.$data['tgl_hilang'].'</td>';
-                        echo '<td>'.$data['tgl_fc'].'</td>';
                         echo '<td>'.$data['masa_berlaku'].'</td>';
+                        echo '<td>'.$data['tgl_fc'].'</td>';
+                        echo '<td>'.$data['keterangan'].'</td>';
+
+                        
                         $no++;
                       }
                     }

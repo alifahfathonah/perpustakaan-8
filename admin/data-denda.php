@@ -39,12 +39,12 @@
   <hr>
   <form class="form-inline" action="" method="POST">
     <div class="form-group" style="float: right;">
-      <input size="34px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
+      <input size="129px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
       <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i></button>
       <a href=""><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
     </div>
   </form>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-fw"></i>Tambah Denda</button>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-fw"></i>Tambah Denda</button> -->
     <br><br>
     <form class="form-horizontal" method="POST">
       <table class="table1 table-striped">
@@ -75,17 +75,17 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE  status_denda='0' AND no_induk LIKE '%$pencarian%'"; 
+                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' AND no_induk LIKE '%$pencarian%'"; 
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0' LIMIT $posisi, $batas ";
-                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam  FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0'";
+                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
+                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0'";
                 $no = $posisi + 1;
               }
             } else {
-              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE status_denda='0' LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_dendaa.status_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE  status_denda='0'";
+              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
+              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0'";
               
               $no = $posisi + 1;
             } 
@@ -113,70 +113,40 @@
 
         </tbody>
       </table>
+      <?php
+     if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+        echo "<div style=\"float:left;\">";
+        $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+      } else { ?>
+        <div style="float:left;">
+          <?php
+          $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+          echo "Jumlah Data: <b>$jml</b>";
+          ?>
+        </div>
+        <div style="float:right;">
+          <ul class="pagination pagination-sm" style="margin: 0">
+            <?php
+            $jml_hal = ceil($jml / $batas);
+            for ($i=1; $i <= $jml_hal; $i++) {
+              if ($i != $hal) {
+                echo "<li><a href=\"admin.php?content=data-denda&&hal=$i\">$i</a></li>";
+              } else {
+                echo "<li class=\"active\"><a>$i</a></li>";
+              }
+            }
+            ?>
+          </ul>
+        </div>
+        <?php
+      }
+?>
     </form>
 </div>
 </div>
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-          <div class="modal-header" style="background-color:#3bacd6";>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <p align="center"><font size="2px"><i>Sistem Informasi Perpustakaan SMK Patriot 2 Bekasi</i></font></p>
-            <h4 class="modal-title" align="center"><b>Tambahkan Denda</b></h4>
-          </div>
-      <div class="modal-body">
-          <form action="../config/add-denda.php" class="form-horizontal" method="POST">
-          <!--    <form action="" class="form-horizontal" method="POST">
-          <div class="form-group">
-            <label class="col-sm-2"></label>
-            <label class="col-sm-2">Status Denda</label>
-            <label class="col-sm-1">:</label>
-            <div class="col-sm-5">
-              <input type="data-toggle" class="form-control" name="status_denda" placeholder="Status Denda" required>
-            </div>-->
-      <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Nomor Induk</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
-          </div>
-      </div>
-      <div class="form-group">
-            <label class="col-sm-1"></label>
-            <label class="col-sm-3">Jumlah Denda</label>
-            <label class="col-sm-1">:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" name="jml_denda" placeholder="Jumlah Denda"required>
-            </div>
-          </div>
-      <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Tanggal Pinjam</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">   
-                    <input type="date" name="tgl_pinjam" value="<?php echo $data['id_pinjam'] ?>"> <?php echo $data['tgl_pinjam'] ?>
-                 
-            <input type="hidden" name="status_denda" value="0">  
-          </div>
-      </div>
-      <div class="form-group">
-          <label class="control-label col-sm-4"></label>
-          <div class="col-sm-6" align="right">
-            <button class="btn btn-primary">Simpan</button>
-          </div>
-      </div>
-    </form>
-    </div>
-          <div class="modal-footer">
-            
-          </div>
-    </div>
-    </div>
-  </div>
 
 
 

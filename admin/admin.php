@@ -66,15 +66,21 @@ include '../config/koneksi.php';
                     </a>
                 </li>
                 <li>
-                    <a href="admin.php?content=laporan-kehilangan">
-                    <i class="fa fa-database fa-fw"></i>
-                    <p>Laporan Kehilangan</p>
+                    <a href="admin.php?content=data-kehilangan">
+                    <i class="fa fa-clipboard fa-fw"></i>
+                    <p>Data Kehilangan</p>
                     </a>
                 </li>
                 <li>
                     <a href="admin.php?content=data-denda">
                     <i class="fa fa-clipboard fa-fw"></i>
                     <p>Data Denda</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.php?content=laporan-kehilangan">
+                    <i class="fa fa-database fa-fw"></i>
+                    <p>Laporan Kehilangan</p>
                     </a>
                 </li>
 				<li>
@@ -149,6 +155,15 @@ include '../config/koneksi.php';
     include 'edit-user.php';
          else if ($content=='edit-denda')
     include 'edit-denda.php';
+         else if ($content=='data-kehilangan')
+    include 'data-kehilangan.php';
+         else if ($content=='edit-kehilangan')
+    include 'edit-kehilangan.php';
+         else if ($content=='edit-peminjaman')
+    include 'edit-peminjaman.php';
+         else if ($content=='data-peminjaman')
+    include 'data-peminjaman.php';
+
 
 
 ?>

@@ -52,18 +52,18 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Tanggal Peminjaman</th>
-            <th>Tanggal Pengembalian</th>
             <th>Nomor Induk</th>
             <th>Judul</th>
             <th>Jumlah Buku</th>
+            <th>Tanggal Peminjaman</th>
+            <th>Tanggal Pengembalian</th>
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
         <tbody>
            <?php
 
-           error_reporting(0);
+           // error_reporting(0);
 
             include '../config/koneksi.php';
 
@@ -78,19 +78,32 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam,  tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND tbl_pinjam.id_buku AND status_buku='0' AND no_induk LIKE '%$pencarian%' OR judul LIKE '%$pencarian%'";
-                $query = $sql; 
+                $sql = "SELECT * FROM tbl_pinjam WHERE status_buku='0' AND judul LIKE '%$pencarian%'  ORDER BY id_pinjam DESC";
+                $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0' LIMIT $posisi, $batas ";
-                $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND  status_buku='0'";
+                $query = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC LIMIT $posisi, $batas ";
+                $queryJml = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC";
                 $no = $posisi + 1;
               }
             } else {
-              $query ="SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND  status_buku='0' LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND  status_buku='0'";
+              $query = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC LIMIT $posisi, $batas ";
+              $queryJml = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC";
               $no = $posisi + 1;
             }
+            //     $sql = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam,  tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE status_buku='0' AND no_induk LIKE '%$pencarian%' OR judul LIKE '%$pencarian%'";
+            //     $query = $sql; 
+            //     $queryJml = $sql;
+            //   } else {
+            //     $query = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0' LIMIT $posisi, $batas ";
+            //     $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0'";
+            //     $no = $posisi + 1;
+            //   }
+            // } else {
+            //   $query ="SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND  status_buku='0' LIMIT $posisi, $batas ";
+            //   $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0'";
+            //   $no = $posisi + 1;
+            // }
             // $baru = "SELECT a.* , b.* from tbl_pinjam a LEFT JOIN tbl_buku b on a.id_buku = b.id_buku" ;
             // $baru = "SELECT * FROM tbl_pinjam INNER JOIN tbl_buku on tbl_pinjam.id_buku = tbl_buku.id_buku";
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
@@ -103,11 +116,11 @@
                       while($data = mysqli_fetch_array($querydata)){ 
                         echo '<tr>';
                         echo '<td>'.$no.'</td>';
-                        echo '<td>'.$data['tgl_pinjam'].'</td>';
-                        echo '<td>'.$data['tgl_kembali'].'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
                         echo '<td>'.$data['judul'].'</td>';
                         echo '<td>'.$data['jml_pinjam'].'</td>';
+                        echo '<td>'.$data['tgl_pinjam'].'</td>';
+                        echo '<td>'.$data['tgl_kembali'].'</td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-peminjaman&&id_pinjam='.$data['id_pinjam'].'&&id_buku='.$data['id_buku'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-peminjaman.php?id_pinjam='.$data['id_pinjam'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';
@@ -119,14 +132,73 @@
 
         </tbody>
       </table>
-         <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <?php
+     if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+        echo "<div style=\"float:left;\">";
+        $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+      } else { ?>
+        <div style="float:left;">
+          <?php
+          $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+          echo "Jumlah Data: <b>$jml</b>";
+          ?>
+        </div>
+        <div style="float:right;">
+          <ul class="pagination pagination-sm" style="margin: 0">
+            <?php
+            $jml_hal = ceil($jml / $batas);
+            for ($i=1; $i <= $jml_hal; $i++) {
+              if ($i != $hal) {
+                echo "<li><a href=\"admin.php?content=data-peminjaman&&hal=$i\">$i</a></li>";
+              } else {
+                echo "<li class=\"active\"><a>$i</a></li>";
+              }
+            }
+            ?>
           </ul>
+        </div>
+        <?php
+      }
+?>
     </form>
+
+    <?php
+      // $now = date('Y-m-d');
+      // echo date('Y-m-d');
+      // var_dump($nowone);
+
+      // $select = "SELECT * FROM `tbl_pinjam` WHERE status_buku='0' and tgl_kembali < '$now'";
+      // $tampil = mysqli_query($konek,$select)or die(mysqli_error());
+      $query = mysqli_query($konek,"SELECT * FROM tbl_pinjam WHERE status_buku=0");
+      if (mysqli_num_rows($query) == 0){
+        // echo "<td colspan=4 align=center>Tidak Ada Data!</td>";
+      }
+      else
+      {
+        while($data = mysqli_fetch_array($query)){
+          echo '<br>';
+          $pinjam = $data['id_pinjam'];
+          echo $pinjam;
+
+          $query  = "SELECT count(id_pinjam) FROM `tbl_dendaa` WHERE id_pinjam='6'";
+          $tes    = mysqli_query($konek,$query)or die(mysqli_error());          
+          $hasil  = mysqli_num_rows($tes);
+          echo $hasil;
+
+          if ($hasil=0) {
+            // function insert data ke tbl_dendaa dr data yg ada di tbl_pinjam
+          }
+
+        }
+        echo "<br>";
+        echo "Function cek table denda dgn id_pinjam sesuai diatas";
+        echo "<br>";
+        echo "Function insert data ke table denda";
+      }
+    ?>
 </div>
 </div>
 
@@ -150,10 +222,10 @@
            <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
            <!-- <select class="form-control" name="no_induk" aria-describedby="basic-addon1" required>
            <?php
-                    $siswa = "SELECT * FROM tbl_siswa";
+                    $siswa = "SELECT * FROM tbl_pinjam";
                     $querysiswa = mysqli_query($konek,$siswa);
                     while ($dtsiswa = mysqli_fetch_array($querysiswa)) { ?>
-                    <option value="<?php echo $dtsiswa['id_siswa'] ?>"> <?php echo $dtsiswa['no_induk'] ?>
+                    <option value="<?php echo $dtsiswa['id_pinjam'] ?>"> <?php echo $dtsiswa['no_induk'] ?>
                     </option>
                     <?php
                     }
@@ -166,10 +238,11 @@
           <label class="col-sm-4">Judul Buku</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-          <!-- <input type="text" class="form-control" name="judul" placeholder="Judul" required>  -->
-          <select class="form-control" name="judul" aria-describedby="basic-addon1" required>
+          <input type="text" class="form-control" name="judul" placeholder="Judul" required> 
+          <!-- <select class="form-control" name="judul" aria-describedby="basic-addon1" required>
                     <?php
-                    $buku = "SELECT * FROM tbl_buku WHERE sisa_buku != 0";
+                    $buku = "SELECT * FROM tbl_buku "; 
+                    // WHERE sisa_buku != 0
                     $querybuku = mysqli_query($konek,$buku);
                     while ($bk = mysqli_fetch_assoc($querybuku)) { ?>
                     <option value="<?php echo $bk['id_buku'] ?>"> <?php echo $bk['judul'] ?>
@@ -178,7 +251,8 @@
                     }
                     ?>
                   </select> 
-          </div>
+          </div> -->
+        </div>
       </div>
       <div class="form-group">
           <label class="col-sm-1"></label>

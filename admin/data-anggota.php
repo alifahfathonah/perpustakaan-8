@@ -115,13 +115,37 @@
                 ?>
         </tbody>
       </table>
-       <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
+      <?php
+     if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+        echo "<div style=\"float:left;\">";
+        $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+      } else { ?>
+        <div style="float:left;">
+          <?php
+          $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+          echo "Jumlah Data: <b>$jml</b>";
+          ?>
+        </div>
+        <div style="float:right;">
+          <ul class="pagination pagination-sm" style="margin: 0">
+            <?php
+            $jml_hal = ceil($jml / $batas);
+            for ($i=1; $i <= $jml_hal; $i++) {
+              if ($i != $hal) {
+                echo "<li><a href=\"admin.php?content=data-anggota&&hal=$i\">$i</a></li>";
+              } else {
+                echo "<li class=\"active\"><a>$i</a></li>";
+              }
+            }
+            ?>
+          </ul>
+        </div>
+        <?php
+      }
+?>
     </form>
 </div>
 </div>

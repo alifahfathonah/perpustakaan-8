@@ -69,6 +69,15 @@ include 'config/koneksi.php';
       include 'kunjungan.php';
       else if ($content=='pencarian_buku')
       include 'pencarian_buku.php';
+      else if($content=='pencarian_buku1')
+      include 'pencarian_buku1.php';
+      else if($content=='pencarian_buku2')
+      include 'pencarian_buku2.php';
+      else if($content=='pencarian_buku3')
+      include 'pencarian_bukunext.php';
+      else if($content=='lihat-detail')
+      include 'lihat-detail.php';
+      
       ?>
     </div> 
 

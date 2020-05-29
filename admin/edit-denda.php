@@ -24,7 +24,7 @@
     <form class="form-horizontal" action="../config/edit-keterangan-denda.php" method="POST">
         <div class="panel-group">
           <div class="panel panel-primary">
-            <div class="panel-heading">Edit Data Data</div>
+            <div class="panel-heading">Edit Data Denda</div>
             <div class="panel-body">
               <table class="table table-bordered">
             <input type="hidden" name="id_denda" value="<?php echo $id_denda ?>">

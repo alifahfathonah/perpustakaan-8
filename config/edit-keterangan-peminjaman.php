@@ -8,9 +8,9 @@
     $no_induk          = $_POST['no_induk'];
     $status_buku       = $_POST['status_buku'];
     $jml_pinjam        = $_POST['jml_pinjam'];
-    $id_buku           = $_POST['judul'];
+    $judul             = $_POST['judul'];
     
-    $update     = "UPDATE tbl_pinjam SET tgl_pinjam='$tgl_pinjam', tgl_kembali='$tgl_kembali', no_induk='$no_induk', status_buku='$status_buku', jml_pinjam='$jml_pinjam', id_buku='$id_buku' WHERE id_pinjam='$id_pinjam'"; 
+    $update     = "UPDATE tbl_pinjam SET tgl_pinjam='$tgl_pinjam', tgl_kembali='$tgl_kembali', no_induk='$no_induk', judul='$judul', status_buku='$status_buku', jml_pinjam='$jml_pinjam' WHERE id_pinjam='$id_pinjam'"; 
 	$update	= mysqli_query($konek, $update)or die(mysqli_error());
 
 	if ($update)

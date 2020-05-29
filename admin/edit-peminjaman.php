@@ -5,7 +5,6 @@
     include '../config/koneksi.php';
 
     $id_pinjam  = $_GET['id_pinjam'];
-    $id_buku    = $_GET['id_buku'];
 
     $edit    = "SELECT * FROM tbl_pinjam WHERE id_pinjam = '$id_pinjam'";
     $hasil   = mysqli_query($konek, $edit)or die(mysql_error());
@@ -68,7 +67,7 @@
             <label class="col-sm-2">Judul</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-            <select class="form-control" name="judul" aria-describedby="basic-addon1" required>
+            <!-- <select class="form-control" name="judul" aria-describedby="basic-addon1" required>
                   <?php
                     $buku = "SELECT * FROM tbl_buku";
                     $querybuku = mysqli_query($konek,$buku);
@@ -78,7 +77,8 @@
                     <?php
                     }
                     ?>
-                  </select>
+                  </select> -->
+                  <input type="text" name="judul" class="form-control" value="<?php echo $data['judul']; ?>" required>
 
             </div>
         </div>

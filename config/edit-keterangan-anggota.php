@@ -21,7 +21,7 @@
 
 	if ($update)
     	{
-    		echo "<br><br><br><strong><center><i>Berhasil Edit Data Buku!";
+    		echo "<br><br><br><strong><center><i>Berhasil Edit Data Anggota!";
     		echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/admin.php?content=data-anggota">';
     	}
 	else {

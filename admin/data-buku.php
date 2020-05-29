@@ -57,7 +57,7 @@
             <th>Tahun Terbit</th>
             <th>Gambar</th>
             <th>Jumlah Buku</th>
-            <th>Sisa Buku</th>
+            <!-- <th>Sisa Buku</th> -->
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
@@ -67,7 +67,7 @@
           include '../config/koneksi.php';
                        error_reporting(0);
 
-                       $batas  = 8;
+                       $batas  = 6;
                        $hal    = @$_GET['hal'];
                        if (empty($hal)) {
                          $posisi = 0;
@@ -94,7 +94,7 @@
                           }
                             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                                     if(mysqli_num_rows($querydata) == 0){ 
-                                      echo '<tr><td colspan="8" align="center">Tidak ada data!</td></tr>';    
+                                      echo '<tr><td colspan="3" align="center">Tidak ada data!</td></tr>';    
                                     }
                                       else
                                     { 
@@ -108,7 +108,7 @@
                                         echo '<td>'.$data['tahun_terbit'].'</td>';
                                         echo '<td>'.$data['gambar'].'</td>';
                                         echo '<td>'.$data['jml_buku'].'</td>';
-                                        echo '<td>'.$data['sisa_buku'].'</td>';
+                                        // echo '<td>'.$data['sisa_buku'].'</td>';
                                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-buku&&id_buku='.$data['id_buku'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-buku.php?id_buku='.$data['id_buku'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                                         echo '</tr>';
@@ -119,13 +119,38 @@
                 ?>
         </tbody>
       </table>
-          <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      <br>
+          <?php
+     if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
+        echo "<div style=\"float:left;\">";
+        $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+      } else { ?>
+        <div style="float:left;">
+          <?php
+          $jml = mysqli_num_rows(mysqli_query($konek, $queryJml));
+          echo "Jumlah Data: <b>$jml</b>";
+          ?>
+        </div>
+        <div style="float:right;">
+          <ul class="pagination pagination-sm" style="margin: 0">
+            <?php
+            $jml_hal = ceil($jml / $batas);
+            for ($i=1; $i <= $jml_hal; $i++) {
+              if ($i != $hal) {
+                echo "<li><a href=\"admin.php?content=data-buku&&hal=$i\">$i</a></li>";
+              } else {
+                echo "<li class=\"active\"><a>$i</a></li>";
+              }
+            }
+            ?>
           </ul>
+        </div>
+        <?php
+      }
+?>
     </form>
 </div>
 </div>
@@ -205,6 +230,7 @@
     </div>
     </div>
   </div>
+
 
 
 
