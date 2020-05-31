@@ -28,6 +28,7 @@
 
 </style>
 
+
 <div class="main-panel">
 <div class="col-md-12" style="padding:0px">
   <ol class="breadcrumb" style="margin:0;border-radius:0;">
@@ -39,8 +40,8 @@
   <h3><b>Data</b> Peminjaman</h3>
   <hr>
   <form class="form-inline" action="" method="POST">
-    <div class="form-group" style="float: right;">
-      <input size="34px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
+    <div class="form-group" style="float: right;"> 
+      <input size="20px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
       <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i></button>
       <a href=""><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
     </div>
@@ -52,7 +53,9 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Nomor Induk</th>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Kode Buku</th>
             <th>Judul</th>
             <th>Jumlah Buku</th>
             <th>Tanggal Peminjaman</th>
@@ -91,21 +94,6 @@
               $queryJml = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC";
               $no = $posisi + 1;
             }
-            //     $sql = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam,  tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE status_buku='0' AND no_induk LIKE '%$pencarian%' OR judul LIKE '%$pencarian%'";
-            //     $query = $sql; 
-            //     $queryJml = $sql;
-            //   } else {
-            //     $query = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0' LIMIT $posisi, $batas ";
-            //     $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0'";
-            //     $no = $posisi + 1;
-            //   }
-            // } else {
-            //   $query ="SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku,tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE tbl_buku.id_buku=tbl_pinjam.id_buku AND  status_buku='0' LIMIT $posisi, $batas ";
-            //   $queryJml = "SELECT DISTINCT tbl_pinjam.id_pinjam, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.no_induk, tbl_pinjam.status_buku, tbl_pinjam.jml_pinjam, tbl_buku.judul FROM tbl_pinjam, tbl_buku WHERE  status_buku='0'";
-            //   $no = $posisi + 1;
-            // }
-            // $baru = "SELECT a.* , b.* from tbl_pinjam a LEFT JOIN tbl_buku b on a.id_buku = b.id_buku" ;
-            // $baru = "SELECT * FROM tbl_pinjam INNER JOIN tbl_buku on tbl_pinjam.id_buku = tbl_buku.id_buku";
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                     if(mysqli_num_rows($querydata) == 0){
                       echo '<tr><td colspan="8" align="center">Tidak ada data!</td></tr>';
@@ -117,6 +105,8 @@
                         echo '<tr>';
                         echo '<td>'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
+                        echo '<td>'.$data['nama_siswa'].'</td>';
+                        echo '<td>'.$data['kode_buku'].'</td>';
                         echo '<td>'.$data['judul'].'</td>';
                         echo '<td>'.$data['jml_pinjam'].'</td>';
                         echo '<td>'.$data['tgl_pinjam'].'</td>';
@@ -165,7 +155,7 @@
 ?>
     </form>
 
-    <?php
+   <!--  <?php
       // $now = date('Y-m-d');
       // echo date('Y-m-d');
       // var_dump($nowone);
@@ -198,7 +188,7 @@
         echo "<br>";
         echo "Function insert data ke table denda";
       }
-    ?>
+    ?> -->
 </div>
 </div>
 
@@ -216,21 +206,26 @@
           <form action="../config/add-peminjaman.php" class="form-horizontal" method="POST">
       <div class="form-group">
           <label class="col-sm-1"></label>
-          <label class="col-sm-4">Nomor Induk</label>
+          <label class="col-sm-4">NIS</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-           <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
-           <!-- <select class="form-control" name="no_induk" aria-describedby="basic-addon1" required>
-           <?php
-                    $siswa = "SELECT * FROM tbl_pinjam";
-                    $querysiswa = mysqli_query($konek,$siswa);
-                    while ($dtsiswa = mysqli_fetch_array($querysiswa)) { ?>
-                    <option value="<?php echo $dtsiswa['id_pinjam'] ?>"> <?php echo $dtsiswa['no_induk'] ?>
-                    </option>
-                    <?php
-                    }
-                    ?>
-            </select> -->
+           <input type="number" class="form-control" name="no_induk" id="no" placeholder="e.g. 888192812" required>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-4">Nama </label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+           <input type="text"  class="form-control" name="nama_siswa" placeholder="Nama Siswa" readonly  id="nama"  required>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-4">Kode Buku</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+           <input type="text"  class="form-control" name="kode_buku" placeholder="Kode Buku"  id="kode"  required>
           </div>
       </div>
       <div class="form-group">
@@ -238,20 +233,7 @@
           <label class="col-sm-4">Judul Buku</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-          <input type="text" class="form-control" name="judul" placeholder="Judul" required> 
-          <!-- <select class="form-control" name="judul" aria-describedby="basic-addon1" required>
-                    <?php
-                    $buku = "SELECT * FROM tbl_buku "; 
-                    // WHERE sisa_buku != 0
-                    $querybuku = mysqli_query($konek,$buku);
-                    while ($bk = mysqli_fetch_assoc($querybuku)) { ?>
-                    <option value="<?php echo $bk['id_buku'] ?>"> <?php echo $bk['judul'] ?>
-                    </option>
-                    <?php
-                    }
-                    ?>
-                  </select> 
-          </div> -->
+          <input type="text" class="form-control" name="judul" id="judul" placeholder="Judul"  value="" readonly="" required> 
         </div>
       </div>
       <div class="form-group">
@@ -259,12 +241,12 @@
           <label class="col-sm-4">Jumlah Buku</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="number" min="1" max="5" class="form-control" name="jml_pinjam" placeholder="Jumlah Buku" required> 
+            <input type="number"  class="form-control" name="jml_pinjam" value="1" placeholder="Jumlah Buku"  readonly required> 
             <input type="hidden" name="status_buku" value="0">
           </div>
       </div>
       <div class="form-group">
-          <label class="control-label col-sm-4"></label>
+          <label class="control-label col-sm-5"></label>
           <div class="col-sm-6" align="right">
             <button class="btn btn-primary" type="submit">Simpan</button>
           </div>
@@ -277,4 +259,51 @@
     </div>
     </div>
   </div>
-  
+
+
+  <!-- <script type="text/javascript">
+            function isi_otomatis(){
+                var kode_buku = $("#kode_buku").val();
+                $.ajax({
+                    url: 'ajax-kode-buku.php',
+                    data:"kode_buku="+kode_buku ,
+                }).success(function (data) {
+                    var json = data,
+                    obj = JSON.parse(json);
+                    $('#judul').val(obj.judul);
+                    // $('#jurusan').val(obj.jurusan);
+                    // $('#alamat').val(obj.alamat);
+                });
+            }
+ </script> 
+ -->
+
+ <script type="text/javascript">
+
+    $( "#kode" ).change(function() {
+      var kode_buku = $("#kode").val();
+      console.log(kode);
+      $.ajax({
+        url: "./ajax-kode-buku.php?kode_buku=" + kode_buku,
+        success: function(result){
+            console.log(result);
+          $("#judul").val(result);
+        }
+      });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $( "#no" ).change(function() {
+      var no_induk = $("#no").val();
+      console.log(no);
+      $.ajax({
+        url: "./ajax-no-induk.php?no_induk=" + no_induk,
+        success: function(result){
+            console.log(result);
+          $("#nama").val(result);
+        }
+      });
+    });
+</script>

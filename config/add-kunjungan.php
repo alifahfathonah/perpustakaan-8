@@ -7,12 +7,12 @@
 	$tgl_kunjungan		= date('Y-m-d');
 	$no_induk		   	= $_POST['no_induk'];
 	
-	$insert			= "INSERT INTO tbl_kunjungan VALUES ('', '$tgl_kunjungan', '$no_induk', '$id_siswa')";
+	$insert			= "INSERT INTO tbl_kunjungan VALUES ('', '$tgl_kunjungan', '$no_induk')";
 
 	$simpan			= mysqli_query($konek, $insert)or die(mysqli_error($konek));
 
 	echo "<br><br><br><strong><center><i>Terimakasih anda telah mengisi daftar kunjungan!";
-	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin.php?content=kunjungan">';
+	echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../index.php?content=kunjungan">';
 
 	
 

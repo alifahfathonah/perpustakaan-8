@@ -28,7 +28,7 @@
                       include '../config/koneksi.php';
 
                       
-                      $query = mysqli_query($konek, "SELECT DISTINCT tbl_kunjungan.id_kunjungan, tbl_kunjungan.tgl_kunjungan, tbl_kunjungan.no_induk, tbl_siswa.nama_siswa FROM tbl_kunjungan, tbl_siswa WHERE tbl_siswa.id_siswa=tbl_kunjungan.id_siswa")or die(mysqli_error($konek));
+                      $query = mysqli_query($konek, "SELECT DISTINCT tbl_kunjungan.id_kunjungan, tbl_kunjungan.tgl_kunjungan, tbl_kunjungan.no_induk, tbl_siswa.nama_siswa FROM tbl_kunjungan, tbl_siswa WHERE tbl_siswa.no_induk=tbl_kunjungan.no_induk")or die(mysqli_error($konek));
 
                               if(mysqli_num_rows($query) == 0){
                                 echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2020 at 06:19 PM
+-- Generation Time: May 31, 2020 at 08:47 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -30,22 +30,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_buku` (
   `id_buku` int(5) NOT NULL,
+  `kode_buku` varchar(30) NOT NULL,
   `judul` varchar(50) NOT NULL,
   `nama_penerbit` varchar(30) NOT NULL,
   `pengarang` varchar(30) NOT NULL,
   `tahun_terbit` varchar(10) NOT NULL,
   `gambar` varchar(200) NOT NULL,
-  `jml_buku` int(5) NOT NULL,
-  `sisa_buku` int(5) NOT NULL
+  `jml_buku` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_buku`
 --
 
-INSERT INTO `tbl_buku` (`id_buku`, `judul`, `nama_penerbit`, `pengarang`, `tahun_terbit`, `gambar`, `jml_buku`, `sisa_buku`) VALUES
-(14, 'PKN', 'erlangga', 'desi', '2016', '../galeri/markijar.com - teknik informatika.png', 21, 1),
-(15, 'contoh', 'matahari bertemu bulan', 'ngasal', '2022', '../galeri/markijar.com - teknik informatika.png', 21, 4);
+INSERT INTO `tbl_buku` (`id_buku`, `kode_buku`, `judul`, `nama_penerbit`, `pengarang`, `tahun_terbit`, `gambar`, `jml_buku`) VALUES
+(2, 'p122', 'bahasa inggris', 'erlanggaa', 'desi', '2014', '../galeri/markijar.com - teknik informatika.png', 100);
 
 -- --------------------------------------------------------
 
@@ -60,15 +59,6 @@ CREATE TABLE `tbl_dendaa` (
   `id_pinjam` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_dendaa`
---
-
-INSERT INTO `tbl_dendaa` (`id_denda`, `jml_denda`, `status_denda`, `id_pinjam`) VALUES
-(3, 50000, 0, 1),
-(4, 4000, 0, 3),
-(5, 4000, 0, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -78,29 +68,22 @@ INSERT INTO `tbl_dendaa` (`id_denda`, `jml_denda`, `status_denda`, `id_pinjam`) 
 CREATE TABLE `tbl_hilang` (
   `id_hilang` int(12) NOT NULL,
   `no_induk` int(12) NOT NULL,
+  `nama_siswa` varchar(30) NOT NULL,
+  `kode_buku` varchar(30) NOT NULL,
+  `judul` varchar(50) NOT NULL,
   `status_fc` int(2) NOT NULL,
   `tgl_hilang` date NOT NULL,
-  `tgl_fc` date NOT NULL,
-  `masa_berlaku` int(12) NOT NULL
+  `tgl_fc` varchar(20) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  `keterangan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `tbl_karyawan`
+-- Dumping data for table `tbl_hilang`
 --
 
-CREATE TABLE `tbl_karyawan` (
-  `id_karyawan` int(5) NOT NULL,
-  `nama_karyawan` varchar(30) NOT NULL,
-  `no_induk` int(12) NOT NULL,
-  `jabatan` varchar(20) NOT NULL,
-  `agama_karyawan` varchar(20) NOT NULL,
-  `alamat_karyawan` varchar(50) NOT NULL,
-  `jk_karyawan` varchar(10) NOT NULL,
-  `hp_karyawan` int(12) NOT NULL,
-  `email_karyawan` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tbl_hilang` (`id_hilang`, `no_induk`, `nama_siswa`, `kode_buku`, `judul`, `status_fc`, `tgl_hilang`, `tgl_fc`, `masa_berlaku`, `keterangan`) VALUES
+(14, 89, '[\"pitri\"] ', 'p122', '[\"bahasa inggris\"] ', 0, '2020-05-31', '-', '2020-06-07', '');
 
 -- --------------------------------------------------------
 
@@ -111,19 +94,26 @@ CREATE TABLE `tbl_karyawan` (
 CREATE TABLE `tbl_kunjungan` (
   `id_kunjungan` int(5) NOT NULL,
   `tgl_kunjungan` date NOT NULL,
-  `no_induk` int(12) NOT NULL,
-  `id_siswa` int(12) NOT NULL
+  `no_induk` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_kunjungan`
 --
 
-INSERT INTO `tbl_kunjungan` (`id_kunjungan`, `tgl_kunjungan`, `no_induk`, `id_siswa`) VALUES
-(2, '2020-05-18', 34, 5),
-(3, '0000-00-00', 0, 0),
-(4, '0000-00-00', 0, 0),
-(5, '0000-00-00', 0, 0);
+INSERT INTO `tbl_kunjungan` (`id_kunjungan`, `tgl_kunjungan`, `no_induk`) VALUES
+(2, '2020-05-18', 34),
+(9, '2020-05-19', 86745893),
+(10, '2020-05-20', 3),
+(11, '2020-05-27', 990),
+(12, '2020-05-29', 123321),
+(13, '2020-05-29', 123321),
+(14, '2020-05-30', 86745893),
+(15, '2020-05-30', 86745893),
+(16, '2020-05-30', 86745893),
+(17, '2020-05-30', 86745893),
+(18, '2020-05-30', 34),
+(19, '2020-05-30', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -155,21 +145,19 @@ CREATE TABLE `tbl_pinjam` (
   `tgl_pinjam` date NOT NULL,
   `tgl_kembali` date NOT NULL,
   `no_induk` int(12) NOT NULL,
+  `nama_siswa` varchar(30) NOT NULL,
+  `judul` varchar(30) NOT NULL,
   `status_buku` int(2) NOT NULL,
   `jml_pinjam` int(12) NOT NULL,
-  `id_buku` int(12) NOT NULL
+  `kode_buku` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_pinjam`
 --
 
-INSERT INTO `tbl_pinjam` (`id_pinjam`, `tgl_pinjam`, `tgl_kembali`, `no_induk`, `status_buku`, `jml_pinjam`, `id_buku`) VALUES
-(1, '2020-04-30', '2020-05-14', 88, 0, 3, 14),
-(3, '2020-04-30', '2020-05-14', 88, 1, 1, 14),
-(5, '2020-05-01', '2020-05-15', 213, 1, 2, 14),
-(9, '2020-05-04', '2020-05-18', 666, 0, 3, 15),
-(10, '2020-05-05', '2020-05-19', 88, 0, 4, 14);
+INSERT INTO `tbl_pinjam` (`id_pinjam`, `tgl_pinjam`, `tgl_kembali`, `no_induk`, `nama_siswa`, `judul`, `status_buku`, `jml_pinjam`, `kode_buku`) VALUES
+(3, '2020-05-31', '2020-06-14', 89, '[\"pitri\"] ', '[\"bahasa inggris\"] ', 0, 1, 'p122');
 
 -- --------------------------------------------------------
 
@@ -182,12 +170,13 @@ CREATE TABLE `tbl_siswa` (
   `no_induk` int(12) NOT NULL,
   `nama_siswa` varchar(30) NOT NULL,
   `kelas_siswa` varchar(10) NOT NULL,
-  `jurusan` varchar(20) NOT NULL,
+  `jurusan` varchar(40) NOT NULL,
   `agama_siswa` varchar(20) NOT NULL,
   `alamat_siswa` varchar(50) NOT NULL,
   `jk_siswa` varchar(10) NOT NULL,
   `hp_siswa` int(12) NOT NULL,
   `email_siswa` varchar(30) NOT NULL,
+  `gambar` varchar(200) NOT NULL,
   `tahun_masuk` int(10) NOT NULL,
   `status_siswa` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -196,18 +185,8 @@ CREATE TABLE `tbl_siswa` (
 -- Dumping data for table `tbl_siswa`
 --
 
-INSERT INTO `tbl_siswa` (`id_siswa`, `no_induk`, `nama_siswa`, `kelas_siswa`, `jurusan`, `agama_siswa`, `alamat_siswa`, `jk_siswa`, `hp_siswa`, `email_siswa`, `tahun_masuk`, `status_siswa`) VALUES
-(5, 34, 'adf', 'sddf', 'dsf', 'sdsf', 'sdf', 'on', 342, 'sd@gmail.com', 2017, 1),
-(6, 0, 'd', 'sdm', 'sdmn', 'sn', 'snn', 'on', 21, 'ds@gmail.com', 23, 1),
-(7, 213, 'sd', 'dsc', 'sdc', 'cd', 'sddc', 'Perempuan', 2314, 'sd@gmail.com', 23, 0),
-(8, 78, 'sdn', 'sdmn', 'sdn', 'sdn', 'sdfnm', 'Perempuan', 242, 'sf@gmail.com', 24, 0),
-(9, 12313, 'dasds', 'qeqe', 'dsfsf', 'weqeq', 'sdsfs', 'Perempuan', 87866, '1231', 35, 0),
-(10, 123321, 'taka', '1273187``', 'qwekwl', 'dmasndk', 'asdmsa', 'Laki-Laki', 2147483647, '1231@hjaksd', 0, 0),
-(11, 121, 'takeru', 'eqjwkq', 'sahdka', 'sadjak', 'askdhsak', 'Laki-Laki', 12312, '3232``', 0, 0),
-(12, 311, 'takeru', 'X', 'Otomatisasi Tata Kel', 'islam', 'kasdjkadjk', 'Laki-Laki', 123131, 'ada@gmail.com', 24, 0),
-(13, 234, 'dsf', 'sdf', 'sdf', 'ssfd', 'fsfer', 'Perempuan', 341, 'sd@gmail.com', 2017, 0),
-(14, 213, 'sadf', 'sad', 'dasq', 'sfaw', 'sdf', 'Laki-Laki', 23084, 'sadn@gmail.com', 21300, 0),
-(16, 666, 'asd', 'X', 'Otomatisasi Tata Kel', 'sad', 'asd', 'Perempuan', 234, 'sc@gmail.com', 2017, 1);
+INSERT INTO `tbl_siswa` (`id_siswa`, `no_induk`, `nama_siswa`, `kelas_siswa`, `jurusan`, `agama_siswa`, `alamat_siswa`, `jk_siswa`, `hp_siswa`, `email_siswa`, `gambar`, `tahun_masuk`, `status_siswa`) VALUES
+(1, 89, 'pitri', 'X', 'Otomatisasi Tata Kelola Perkantoran', 'Islam', 'ciketing', 'Perempuan', 2147483647, 'sapitrianggraini74@gmail.com', '../foto/img_20170204_191842.jpg', 2019, 1);
 
 -- --------------------------------------------------------
 
@@ -254,12 +233,6 @@ ALTER TABLE `tbl_hilang`
   ADD PRIMARY KEY (`id_hilang`);
 
 --
--- Indexes for table `tbl_karyawan`
---
-ALTER TABLE `tbl_karyawan`
-  ADD PRIMARY KEY (`id_karyawan`);
-
---
 -- Indexes for table `tbl_kunjungan`
 --
 ALTER TABLE `tbl_kunjungan`
@@ -298,31 +271,25 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_buku`
 --
 ALTER TABLE `tbl_buku`
-  MODIFY `id_buku` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_buku` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_dendaa`
 --
 ALTER TABLE `tbl_dendaa`
-  MODIFY `id_denda` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_denda` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_hilang`
 --
 ALTER TABLE `tbl_hilang`
-  MODIFY `id_hilang` int(12) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_karyawan`
---
-ALTER TABLE `tbl_karyawan`
-  MODIFY `id_karyawan` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hilang` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_kunjungan`
 --
 ALTER TABLE `tbl_kunjungan`
-  MODIFY `id_kunjungan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kunjungan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbl_level`
@@ -334,13 +301,13 @@ ALTER TABLE `tbl_level`
 -- AUTO_INCREMENT for table `tbl_pinjam`
 --
 ALTER TABLE `tbl_pinjam`
-  MODIFY `id_pinjam` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pinjam` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_siswa`
 --
 ALTER TABLE `tbl_siswa`
-  MODIFY `id_siswa` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_siswa` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

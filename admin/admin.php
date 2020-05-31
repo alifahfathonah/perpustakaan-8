@@ -47,6 +47,16 @@ include '../config/koneksi.php';
                     <p>Home</p>
                     </a>
                 </li>
+                <!-- <li class='active has-sub'><a href='#'><i class="fa fa-clipboard fa-fw"></i> Data</a>
+                    <ul>
+                    <li><a href='admin.php?content=data-buku'><span>Data Buku</span></a></li>
+                    <li><a href='admin.php?content=data-anggota'><span>Data Anggota</span></a></li>
+                    <li><a href='admin.php?content=data-peminjaman'><span>Data Peminjaman</span></a></li>
+                    <li><a href='admin.php?content=data-kehilangan'><span>Data Kehilangan</span></a></li>
+                    <li><a href='admin.php?content=data-denda'><span>Data Denda</span></a></li>
+                    </ul>
+                </li> -->
+                
                  <li>
                     <a href="admin.php?content=data-buku">
                     <i class="fa fa-clipboard fa-fw"></i>
@@ -98,6 +108,7 @@ include '../config/koneksi.php';
             </ul>
     	</div>
     </div>
+
 
    <!--  <div class="main-panel"> -->
         <nav class="navbar navbar-default navbar-fixed">

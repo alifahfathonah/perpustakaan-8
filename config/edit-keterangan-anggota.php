@@ -1,6 +1,6 @@
 <?php
 
-	include 'koneksi.php';
+    include 'koneksi.php';
 
     $id_siswa       = $_POST['id_siswa'];
     $no_induk       = $_POST['no_induk'];
@@ -17,20 +17,20 @@
 
     $update     = "UPDATE tbl_siswa SET no_induk='$no_induk', nama_siswa='$nama_siswa', kelas_siswa='$kelas_siswa', jurusan='$jurusan', agama_siswa='$agama_siswa', alamat_siswa='$alamat_siswa', jk_siswa='$jk_siswa', hp_siswa='$hp_siswa', email_siswa='$email_siswa', tahun_masuk='$tahun_masuk', status_siswa='$status_siswa'  WHERE id_siswa='$id_siswa'";
 
-	$update	= mysqli_query($konek, $update)or die(mysqli_error());
+    $update = mysqli_query($konek, $update)or die(mysqli_error());
 
-	if ($update)
-    	{
-    		echo "<br><br><br><strong><center><i>Berhasil Edit Data Anggota!";
-    		echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/admin.php?content=data-anggota">';
-    	}
-	else {
-    		print"
-    			<script>
-    				alert(\"Balasan gagal ditambah!\");
-    				history.back(-1);
-    			</script>";
-    	}
+    if ($update)
+        {
+            echo "<br><br><br><strong><center><i>Berhasil Edit Data Anggota!";
+            echo '<META HTTP-EQUIV="REFRESH" CONTENT = "1; URL=../admin/admin.php?content=data-anggota">';
+        }
+    else {
+            print"
+                <script>
+                    alert(\"Balasan gagal ditambah!\");
+                    history.back(-1);
+                </script>";
+        }
 ?>
 
 

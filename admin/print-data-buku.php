@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <title>Print Laporan Kunjungan</title>
+  <title>Print Data Buku</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
  <body onload="window.print()">
    <div class="panel-group">
       <div class="panel panel-primary">
-        <div class="panel-heading"><p align="center"><b>Print Laporan Kunjungan</b></p></div>
+        <div class="panel-heading"><p align="center"><b>Print Data Buku</b></p></div>
         <div class="panel-body">
           <table class="table">
             <tr>
@@ -26,9 +26,11 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Tanggal Kunjungan</th>
-                    <th>Nomor Induk</th>
-                    <th>Nama Anggota</th>
+                    <th>Judul</th>
+                    <th>Nama Penerbit</th>
+                    <th>Pengarang</th>
+                    <th>Tahun Terbit</th>
+                    <th>Jumlah Buku</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,7 +39,7 @@
                         include '../config/koneksi.php';
 
                         
-                        $query = mysqli_query($konek, "SELECT DISTINCT tbl_kunjungan.id_kunjungan, tbl_kunjungan.tgl_kunjungan, tbl_kunjungan.no_induk, tbl_siswa.nama_siswa FROM tbl_kunjungan, tbl_siswa WHERE tbl_siswa.no_induk=tbl_kunjungan.no_induk")or die(mysqli_error($konek));
+                        $query = mysqli_query($konek, "SELECT DISTINCT * FROM tbl_buku ")or die(mysqli_error($konek));
 
                                 if(mysqli_num_rows($query) == 0){
                                   echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
@@ -46,12 +48,13 @@
                                 {
                                   $no = 1;
                                   while($data = mysqli_fetch_array($query)){
-                                    echo '<tr>';
-                                    echo '<td width="50">'.$no.'</td>';
-                                    echo '<td>'.$data['tgl_kunjungan'].'</td>';
-                                    echo '<td>'.$data['no_induk'].'</td>';
-                                    echo '<td>'.$data['nama_siswa'].'</td>';
-
+                                        echo '<tr>';
+                                        echo '<td>'.$no.'</td>';
+                                        echo '<td>'.$data['judul'].'</td>';
+                                        echo '<td>'.$data['nama_penerbit'].'</td>';
+                                        echo '<td>'.$data['pengarang'].'</td>';
+                                        echo '<td>'.$data['tahun_terbit'].'</td>';
+                                        echo '<td>'.$data['jml_buku'].'</td>';
                                     $no++;
                                   }
                                 }

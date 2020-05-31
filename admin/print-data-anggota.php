@@ -26,11 +26,16 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Nomor Induk</th>
-            <th>Nama Lengkap</th>
+            <th>NIS</th>
+            <th>Nama</th>
             <th>Kelas</th>
             <th>Jurusan</th>
             <th>Agama</th>
+            <th>Alamat</th>
+            <th>Jenis Kelamin</th>
+            <th>No HP</th>
+            <th>Email</th>
+            <th>Tahun Masuk</th>
           </tr>
         </thead>
        <tbody>
@@ -41,7 +46,7 @@
 
             $query = mysqli_query($konek, "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC")or die(mysqli_error($konek));
                     if(mysqli_num_rows($query) == 0){
-                      echo '<tr><td colspan="8" align="center"><i>Tidak ada data!</i></td></tr>';
+                      echo '<tr><td colspan="11" align="center"><i>Tidak ada data!</i></td></tr>';
                     }
                       else
                     {
@@ -54,12 +59,17 @@
                         echo '<td>'.$data['kelas_siswa'].'</td>';
                         echo '<td>'.$data['jurusan'].'</td>';
                         echo '<td>'.$data['agama_siswa'].'</td>';
+                        echo '<td>'.$data['alamat_siswa'].'</td>';
+                        echo '<td>'.$data['jk_siswa'].'</td>';
+                        echo '<td>'.$data['hp_siswa'].'</td>';
+                        echo '<td>'.$data['email_siswa'].'</td>';
+                        echo '<td>'.$data['tahun_masuk'].'</td>';
                         echo '</tr>';
                         $no++;
                       }
                     }
                                 ?>
-                                        </tbody>
+      </tbody>
       </table>
     </body>
     </html>

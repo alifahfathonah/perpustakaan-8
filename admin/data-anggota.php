@@ -27,6 +27,15 @@
   }
 
 </style>
+<script type="text/javascript">
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+        return false;
+      return true;
+    }
+</script>
 <div class="main-panel">
 <div class="col-md-12" style="padding:0px">
   <ol class="breadcrumb" style="margin:0;border-radius:0;">
@@ -161,13 +170,14 @@
             <h4 class="modal-title" align="center"><b>Tambahkan Anggota</b></h4>
           </div>
       <div class="modal-body">
-          <form action="../config/add-anggota.php" class="form-horizontal" method="POST">
+          <form action="../config/add-anggota.php" class="form-horizontal" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label class="col-sm-1"></label>
             <label class="col-sm-3">Nomor Induk</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
+              <input type="number"  class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
+              
             </div>
           </div>
       <div class="form-group">
@@ -206,7 +216,14 @@
           <label class="col-sm-3">Agama</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <input type="comment" class="form-control" name="agama_siswa" placeholder="Agama" required>
+              <select class="form-control" id="sel1" name="agama_siswa">
+              <option value="Islam">Islam</option>
+              <option value="Kristen Protestan">Kristen Protestan</option>
+              <option value="Katolik">Katolik</option>
+              <option value="Hindu">Hindu</option>
+              <option value="Buddha">Buddha</option>
+              <option value="Kong Hu Cu"> Kong Hu Cu</option>
+            </select>
           </div>
       </div>
       <div class="form-group">
@@ -231,7 +248,7 @@
           <label class="col-sm-3">No Handphone</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" name="hp_siswa" placeholder="No Handphone" required>
+            <input type="number" class="form-control" name="hp_siswa" placeholder="No Handphone"  required>
           </div>
       </div>
       <div class="form-group">
@@ -239,7 +256,15 @@
           <label class="col-sm-3">Email</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" name="email_siswa" placeholder="e.g tuti12@gmail.com" required>
+            <input type="email" class="form-control" name="email_siswa" placeholder="e.g tuti12@gmail.com" required>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Gambar</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-6">
+            <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
           </div>
       </div>
       <div class="form-group">
@@ -247,12 +272,12 @@
           <label class="col-sm-3">Tahun Masuk</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" name="tahun_masuk" placeholder="Tahun Masuk" required>
+            <input type="number" class="form-control" name="tahun_masuk" placeholder="Tahun Masuk"  required>
             <input type="hidden" name="status_siswa" value="1">
           </div>
       </div>
       <div class="form-group">
-         <label class="control-label col-sm-4"></label>
+         <label class="control-label col-sm-5"></label>
          <div class="col-sm-6" align="right">
            <button type="submit" class="btn btn-primary">Simpan</button></a></p>
           </div>
@@ -265,7 +290,13 @@
     </div>
     </div>
   </div>
-
+<!-- <script>
+  var notelepon=document.getElementById('notelepon').value; 
+if (notelepon.length!=12) {
+alert("no telepon harus 12 karakter");
+return false;
+}
+</script> -->
 
 
 

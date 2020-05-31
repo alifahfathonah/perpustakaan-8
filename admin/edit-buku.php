@@ -30,6 +30,11 @@
                 <input type="hidden" name="id_buku" value="<?php echo $id_buku ?>">
                 <tr>
                   <tr>
+                  <th><font size="2px">Kode Buku</font></th>
+                  <td width="800"><input class="form-control" name="kode_buku" type="text" value="<?php echo $data['kode_buku']; ?>" required></td>
+                </tr>
+                <tr>
+                  <tr>
                   <th><font size="2px">Judul</font></th>
                   <td width="800"><input class="form-control" name="judul" type="text" value="<?php echo $data['judul']; ?>" required></td>
                 </tr>
@@ -48,7 +53,8 @@
                 <tr>
                   <th><font size="2px">Gambar</font></th>
                   <td>
-                  <a data-toggle="tooltip" data-placement="right" title="Lihat Gambar" href="<?php echo $data['gambar'] ?>" target="_blank"><img width="70" height="50" src="<?php echo $data['gambar'] ?>"></a>
+                  <!-- <a data-toggle="tooltip" data-placement="right" title="Lihat Gambar" href="<?php echo $data['gambar'] ?>" target="_blank"><img width="70" height="50" src="<?php echo $data['gambar'] ?>"></a> -->
+                  <a data-toggle="tooltip" data-placement="right" title="Lihat Gambar" href="<?php echo $data['gambar'] ?>" target="_blank"><?php echo $data['gambar'] ?></a>
                   </td>
                 </tr>
                 <tr>

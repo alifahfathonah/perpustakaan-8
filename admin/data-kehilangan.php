@@ -53,6 +53,8 @@
             <th>No</th>
             <th>NIS</th>
             <th>Nama </th>
+            <th>Kode Buku</th>
+            <th>Judul</th>
             <th>Tanggal Hilang</th>
             <th>Masa Berlaku</th>
             <th>Tanggal Fotocopy</th>
@@ -99,22 +101,16 @@
                       $no = 1;
                       while($data = mysqli_fetch_array($querydata)){
                       ?>
-                        <!-- echo '<tr>';
-                        echo '<td>'.$no.'</td>';
-                        echo '<td>'.$data['no_induk'].'</td>';
-                        echo '<td>'.$data['nama_siswa'].'</td>';
-                        echo '<td>'.$data['tgl_hilang'].'</td>';
-                        echo '<td>'.$data['masa_berlaku'].'</td>';
-                        echo '<td>'.$data['tgl_fc'].'</td>';
-                        echo '<td>'.$data['keterangan'].'</td>'; -->
                         <tr>
                         <td><?php echo $no ?></td>
                         <td><?php echo $data['no_induk'] ?></td>
                         <td><?php echo $data['nama_siswa'] ?></td>
+                        <td><?php echo $data['kode_buku'] ?></td>
+                        <td><?php echo $data['judul'] ?></td>
                         <td><?php echo($data['tgl_hilang']);?></td>
                         <td><?php echo($data['masa_berlaku']);?></td>
                         <td><?php echo($data['tgl_fc']);?></td>
-                        <td><?php if ($data['keterangan']==0) echo "<i class='fa fa-times fa-fw'></i>"; else echo "<i class='fa fa-check fa-fw'></i>"; ?></td>
+                        <td><a data-toggle="tooltip" data-placement="right" title="Belum Dikembalikan"> <?php if ($data['keterangan']==0) echo "<i class='fa fa-times fa-fw'></i>"; else echo "<i class='fa fa-check fa-fw'></i>"; ?></td></a>
                         <td><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-kehilangan&&id_hilang=<?php echo $data['id_hilang'] ?>><i class='fa fa-edit fa-fw'></i></a></td>
                         <td width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-kehilangan.php?id_hilang=<?php echo$data['id_hilang']?>><i class='fa fa-trash fa-fw'></i></a></td></tr>
 
@@ -175,50 +171,40 @@
           <form action="../config/add-kehilangan.php" class="form-horizontal" method="POST">
           <div class="form-group">
             <label class="col-sm-1"></label>
-            <label class="col-sm-3">Nomor Induk</label>
+            <label class="col-sm-3">NIS</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
+              <input type="number" class="form-control" name="no_induk" id="no" placeholder="e.g. 888192812" required>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-1"></label>
-            <label class="col-sm-3">Nama Anggota</label>
+            <label class="col-sm-3">Nama</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" name="nama_siswa" required>
-              <input type="hidden" name="status_fc" value="0">
-             <input type="hidden" name="keterangan" value="">
-
+              <input type="text"  class="form-control" name="nama_siswa" placeholder="Nama Siswa" readonly  id="nama"  required>
             </div>
           </div>
-
-     <!--  <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Tanggal Hilang</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-6">
-            <input type="date" class="form-control" name="tgl_hilang" required="">
+          <div class="form-group">
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">Kode Buku</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-6">
+              <input type="text"  class="form-control" name="kode_buku" placeholder="Kode Buku"  id="kode"  required>       
+            </div>
           </div>
-      </div> -->
-<!--       <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Tanggal Fotocopy</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-6">
-            <input type="date" class="form-control" name="tgl_fc" required="">
+          <div class="form-group">
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">Judul</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="judul" id="judul" placeholder="Judul"  value="" readonly="" required> 
+              <input type="hidden" name="status_fc" value="0">
+              <input type="hidden" name="keterangan" value=""><a data-toggle="tooltip" data-placement="left" title="Belum Dikembalikan"></a>
+            </div>
           </div>
-      </div> -->
-      <!-- <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Masa Berlaku</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-6">
-            <input type="date" class="form-control" name="masa_berlaku"  required>
-          </div>
-      </div> -->
       <div class="form-group">
-         <label class="control-label col-sm-4"></label>
+         <label class="control-label col-sm-5"></label>
          <div class="col-sm-6" align="right">
            <button type="submit" class="btn btn-primary">Simpan</button></a></p>
           </div>
@@ -232,7 +218,35 @@
     </div>
   </div>
 
+ <script type="text/javascript">
 
+    $( "#kode" ).change(function() {
+      var kode_buku = $("#kode").val();
+      console.log(kode);
+      $.ajax({
+        url: "./ajax-kode-buku.php?kode_buku=" + kode_buku,
+        success: function(result){
+            console.log(result);
+          $("#judul").val(result);
+        }
+      });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $( "#no" ).change(function() {
+      var no_induk = $("#no").val();
+      console.log(no);
+      $.ajax({
+        url: "./ajax-no-induk.php?no_induk=" + no_induk,
+        success: function(result){
+            console.log(result);
+          $("#nama").val(result);
+        }
+      });
+    });
+</script>
 
 
 

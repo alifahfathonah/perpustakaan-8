@@ -4,11 +4,13 @@
 
 	include 'koneksi.php';
 
+	$kode_buku		= $_POST["kode_buku"];
 	$judul		   	= $_POST["judul"];
 	$nama_penerbit	= $_POST["nama_penerbit"];
 	$pengarang		= $_POST["pengarang"];
 	$tahun_terbit	= $_POST["tahun_terbit"];
 	$jml_buku		= $_POST["jml_buku"];
+
 
 	$target_dir = "../galeri/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -51,7 +53,7 @@
 	    }
 	}
 
-	$insert = "INSERT INTO tbl_buku VALUES ('','$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
+	$insert = "INSERT INTO tbl_buku VALUES ('', '$kode_buku', '$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
 
 
 

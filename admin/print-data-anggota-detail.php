@@ -40,11 +40,11 @@
             <table class="table table-bordered">  
               <tr>
                 <input type="hidden" name="id_siswa" value="<?php echo $id_siswa?>">
-                <th><font size="3px">Nomor Induk</font></th>
+                <th><font size="3px">NIS</font></th>
                 <td width="500"><i><font size="3px"><?php echo $data['no_induk'];?></font></i></td>
               </tr>
               <tr>
-                <th><font size="3px">Nama Lengkap</font></th>
+                <th><font size="3px">Nama </font></th>
                 <td width="500"><i><font size="3px"><?php echo $data['nama_siswa'];?></font></i></td>
               </tr>
               <tr>

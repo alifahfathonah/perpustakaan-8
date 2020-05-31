@@ -52,7 +52,7 @@
             <form action="config/add-kunjungan.php" method="POST">
                 <div class="form-group">
                   <label for="number">Nomor Induk</label>
-                  <input type="number" class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
+                  <input type="number" class="form-control" name="no_induk" maxlength="12" placeholder="e.g. 888192812" required>
                 </div>
                   <div class="checkbox" data-toggle="modal">
                   <label><input type="checkbox" id="myCheck" data-toggle="modal" data-target="#myModal" onclick="myFunction()"> Lupa nomor induk</label>

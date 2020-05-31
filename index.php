@@ -89,10 +89,8 @@ include 'config/koneksi.php';
           <h3>Follow us on</h3>
           <div class="footer_social">
             <ul>
-              <li><a class="f_facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="f_twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="f_google" href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a class="f_linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a class="f_facebook" href="https://www.facebook.com/SMKPatriot2Bks/"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="f_instagram" href="https://www.instagram.com/osissmkpatriot2/"><i class="fa fa-instagram"></i></a></li>
             </ul>
           </div>
         </div>

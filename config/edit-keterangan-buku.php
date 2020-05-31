@@ -3,13 +3,14 @@
 	include 'koneksi.php';
 
     $id_buku        = $_POST['id_buku'];
+    $kode_buku      = $_POST['kode_buku'];
     $judul          = $_POST['judul'];
     $nama_penerbit  = $_POST['nama_penerbit'];
     $pengarang      = $_POST['pengarang'];
     $tahun_terbit   = $_POST['tahun_terbit'];
     $jml_buku       = $_POST['jml_buku'];
 
-    $update     = "UPDATE tbl_buku SET judul='$judul', nama_penerbit='$nama_penerbit', pengarang='$pengarang', tahun_terbit='$tahun_terbit', jml_buku='$jml_buku' WHERE id_buku='$id_buku'";
+    $update     = "UPDATE tbl_buku SET kode_buku='$kode_buku', judul='$judul', nama_penerbit='$nama_penerbit', pengarang='$pengarang', tahun_terbit='$tahun_terbit', jml_buku='$jml_buku' WHERE id_buku='$id_buku'";
 
 	$update	= mysqli_query($konek, $update)or die(mysqli_error());
 

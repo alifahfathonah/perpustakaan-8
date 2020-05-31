@@ -42,6 +42,7 @@
       <input size="34px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
       <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i></button>
       <a href=""><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
+      <a target ="_blank" role="button" href="print-data-buku.php"><button type="button" class="btn btn-success"><i class="fa fa-print fa-fw"></i></button></a>
     </div>
   </form>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-fw"></i>Tambah Buku</button>
@@ -51,6 +52,7 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>Kode Buku</th>
             <th>Judul</th>
             <th>Nama Penerbit</th>
             <th>Pengarang</th>
@@ -78,7 +80,7 @@
                        if($_SERVER['REQUEST_METHOD'] == "POST") {
                          $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
                          if ($pencarian != '') {
-                           $sql = "SELECT * FROM tbl_buku WHERE id_buku AND judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' OR pengarang LIKE '%$pencarian%' ORDER BY id_buku DESC";
+                           $sql = "SELECT * FROM tbl_buku WHERE id_buku AND judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' OR pengarang LIKE '%$pencarian%' OR tahun_terbit LIKE '%$pencarian%' OR gambar LIKE '%$pencarian%' OR kode_buku LIKE '%$pencarian%' ORDER BY id_buku DESC";
 
                               $query = $sql;
                               $queryJml = $sql;
@@ -94,7 +96,7 @@
                           }
                             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                                     if(mysqli_num_rows($querydata) == 0){ 
-                                      echo '<tr><td colspan="3" align="center">Tidak ada data!</td></tr>';    
+                                      echo '<tr><td colspan="9" align="center">Tidak ada data!</td></tr>';    
                                     }
                                       else
                                     { 
@@ -102,12 +104,15 @@
                                       while($data = mysqli_fetch_array($querydata)){  
                                         echo '<tr>';
                                         echo '<td>'.$no.'</td>';
+                                        echo '<td>'.$data['kode_buku'].'</td>';
                                         echo '<td>'.$data['judul'].'</td>';
                                         echo '<td>'.$data['nama_penerbit'].'</td>';
                                         echo '<td>'.$data['pengarang'].'</td>';
                                         echo '<td>'.$data['tahun_terbit'].'</td>';
                                         echo '<td>'.$data['gambar'].'</td>';
                                         echo '<td>'.$data['jml_buku'].'</td>';
+
+
                                         // echo '<td>'.$data['sisa_buku'].'</td>';
                                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Edit" href=admin.php?content=edit-buku&&id_buku='.$data['id_buku'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-buku.php?id_buku='.$data['id_buku'].'><i class="fa fa-trash fa-fw"></i></a></td>';
@@ -170,6 +175,14 @@
           <form action="../config/add-buku.php" class="form-horizontal" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label class="col-sm-1"></label>
+            <label class="col-sm-3">Kode Buku</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" name="kode_buku" placeholder="Kode Buku" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-1"></label>
             <label class="col-sm-3">Judul</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
@@ -197,7 +210,7 @@
           <label class="col-sm-3">Tahun Terbit</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="tahun_terbit" placeholder="Tahun Terbit" required>
+            <input type="number" class="form-control" name="tahun_terbit" placeholder="Tahun Terbit" required>
           </div>
       </div>
       <div class="form-group">
@@ -213,7 +226,7 @@
           <label class="col-sm-3">Jumlah Buku</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="jml_buku" placeholder="Jumlah Buku" required>
+            <input type="number" class="form-control" name="jml_buku" placeholder="Jumlah Buku" required>
           </div>
       </div>
       <div class="form-group">

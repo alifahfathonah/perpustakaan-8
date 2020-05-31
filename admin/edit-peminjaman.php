@@ -32,7 +32,7 @@
             <label class="col-sm-2">Tanggal Peminjaman</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-                <input class="form-control" name="tgl_pinjam" type="date" value="<?php echo $data['tgl_pinjam']; ?>" required>
+                <input class="form-control" name="tgl_pinjam" type="date" value="<?php echo $data['tgl_pinjam']; ?>" readonly required>
             </div>
         </div>
         <div class="form-group">
@@ -40,7 +40,7 @@
             <label class="col-sm-2">Tanggal Pengembalian</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-                <input class="form-control" name="tgl_kembali" type="date" value="<?php echo $data['tgl_kembali']; ?>" required>
+                <input class="form-control" name="tgl_kembali" type="date" value="<?php echo $data['tgl_kembali']; ?>" readonly required>
             </div>
         </div>
         <div class="form-group">
@@ -49,6 +49,33 @@
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
                 <input class="form-control" name="no_induk" type="text" value="<?php echo $data['no_induk']; ?>" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2"></label>
+            <label class="col-sm-2">Nama</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+                  <input type="text" name="nama_siswa" class="form-control" value="<?php echo $data['nama_siswa']; ?>"  required>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2"></label>
+            <label class="col-sm-2">Kode Buku</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+                  <input type="text" name="kode_buku" class="form-control" value="<?php echo $data['kode_buku']; ?>" required>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2"></label>
+            <label class="col-sm-2">Judul</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+                  <input type="text" name="judul" class="form-control" value="<?php echo $data['judul']; ?>" required>
+
             </div>
         </div>
         <div class="form-group">
@@ -64,30 +91,10 @@
         </div>
         <div class="form-group">
             <label class="col-sm-2"></label>
-            <label class="col-sm-2">Judul</label>
-            <label class="col-sm-1">:</label>
-            <div class="col-sm-5">
-            <!-- <select class="form-control" name="judul" aria-describedby="basic-addon1" required>
-                  <?php
-                    $buku = "SELECT * FROM tbl_buku";
-                    $querybuku = mysqli_query($konek,$buku);
-                    while ($buk = mysqli_fetch_array($querybuku)) { ?>
-                    <option value="<?php echo $buk['id_buku'] ?>"> <?php echo $buk['judul'] ?>
-                    </option>
-                    <?php
-                    }
-                    ?>
-                  </select> -->
-                  <input type="text" name="judul" class="form-control" value="<?php echo $data['judul']; ?>" required>
-
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2"></label>
             <label class="col-sm-2">Jumlah Peminjaman</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-              <input type="text" name="jml_pinjam" class="form-control" value="<?php echo $data['jml_pinjam']; ?>" required>
+              <input type="text" name="jml_pinjam" class="form-control" value="<?php echo $data['jml_pinjam']; ?>" readonly  required>
             </div>
         </div>
         </table>
@@ -113,3 +120,4 @@
 <br>
 <br>
 <br>
+
