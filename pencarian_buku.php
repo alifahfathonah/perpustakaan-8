@@ -1,5 +1,4 @@
 
-
  <br>
 <br>
 <br>
@@ -7,9 +6,9 @@
 <br>
 <form align="center">
   <div class="form-inline">
-  	<div class="form-group">
-    	<input size="140px" type="text" name="search" class="form-control" placeholder="Masukkan judul buku"  id="myInput" onkeyup="myFunctioncari()">
-      	<button class="btn btn-primary" onkeyup="myFunctioncari()" type="submit">
+    <div class="form-group">
+      <input size="140px" type="text" name="search" class="form-control" placeholder="Masukkan judul buku"  id="myInput" onkeyup="myFunctioncari()">
+        <button class="btn btn-primary" onkeyup="myFunctioncari()" type="submit">
         Cari</button>
     </div>
   </div>
@@ -40,6 +39,7 @@
                         echo '<div class="col-md-3">';
                         echo '<div class="panel panel-success">';
                         echo '<div class="panel-heading">';
+                        echo '<p align="center"><b>'.$data['id_buku'].'</b></p>';
                         echo '<p align="center"><b>'.$data['judul'].'</b></p>';
                         echo '</div>';
                         echo '<div class="panel-body"';
@@ -54,27 +54,12 @@
                         echo '<table class="table" style="background-color: #f2f2f2;">';
                         echo '<tr>';
                         // echo '<td align="center">';
-                        echo '<center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
-
-                        // echo '<p align="center">'.substr($data['buku'], 0,300).'&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Lihat Detail" href=index.php?content=lihat-detail&&id_buku='.$data['id_buku'].'>Lihat Detail ..</a></p>';
-
-                        // echo '</td>';
-                        // echo '<td><center></center></td>';
+                        ?><center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
+<?php
                         echo '</tr>';
                         echo '</table>';
-                    ?>
-                      <!-- <p><a data-toggle="tooltip" data-placement="top" title="Lihat Gambar" href="galeri/<?php echo $data['gambar'] ?>" target="_blank"><img src="galeri/<?php echo $data['gambar'] ?>"></a></p> -->  
-                      <?php  
-                        echo '<hr>';
-                        echo '<tr>';
-                        // echo '<td>'.'<center>'.$data['judul'].'</center>'.'</td>';
-                        // echo '<td>'.$data['nama_penerbit'].'</td>';
-                        // echo '<td>'.$data['pengarang'].'</td>';
-                        // echo '<div class="judul"><p>'.$data['judul'].'</p></div>';
-                        // echo '<p align="right"><font size="1px"><i>'.$data['tgl_update'].'&nbsp;&nbsp;&nbsp;</i></font></p>';
-                         echo '</div>';
                         echo '</div>';
-                        echo '</tr>';
+                        echo '</div>';
                         $no++;  
                       }
                     }
@@ -87,20 +72,7 @@
  
 
 <div id="myModal" class="modal fade" role="dialog">
-   <?php
-
-  error_reporting(0);
-
-  include 'config/koneksi.php';
-
-  $id_buku = $_GET['id_buku'];
-
-  $query      = "SELECT * FROM tbl_buku WHERE id_buku = '$id_buku'";
-  $querydata  = mysqli_query($konek, $query)or die(mysql_error());
-  $data       = mysqli_fetch_array($querydata);
-
-?>
-  <div class="modal-dialog">
+  <div class="modal-dialog" role="document">
 
       
      <div class="modal-content">
@@ -110,75 +82,8 @@
             <h4 class="modal-title" align="center"><b>Lihat Detail Buku</b></h4>
           </div>
       <div class="modal-body" >
-
-          <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <label class="col-sm-1"></label>
-            <label class="col-sm-3">ISBN</label>
-            <label class="col-sm-1">:</label>
-            <div class="col-sm-5">
-              <p>
-               <?php echo $data['isbn']; ?>
-              </p>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-1"></label>
-            <label class="col-sm-3">Judul</label>
-            <label class="col-sm-1">:</label>
-            <div class="col-sm-5">
-              <p><?php echo $data['judul']; ?></p>
-            </div>
-          </div>
-      <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Nama Penerbit</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-            <p><?php echo $data['nama_penerbit']; ?></p>
-          </div>
-      </div>
-      <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Pengarang</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-            <p><?php echo $data['pengarang']; ?></p>
-          </div>
-      </div>
-      <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Tahun Terbit</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-            <p><?php echo $data['tahun_terbit']; ?></p>
-          </div>
-      </div> 
-
-
-    <!--   <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Gambar</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-             <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
-          </div>
-      </div> -->
-      <!-- <div class="form-group">
-          <label class="col-sm-1"></label>
-          <label class="col-sm-3">Jumlah Buku</label>
-          <label class="col-sm-1">:</label>
-          <div class="col-sm-5">
-            <input type="number" class="form-control" name="jml_buku" placeholder="Jumlah Buku" required>
-          </div>
-      </div> -->
-      <!-- <div class="form-group">
-          <label class="control-label col-sm-4"></label>
-          <div class="col-sm-6" align="right">
-            <button class="btn btn-primary">Simpan</button>
-          </div>
-      </div> -->
-    </form>
+         <div class="modal-data">
+         </div>
     </div>
           <div class="modal-footer">
             
@@ -251,10 +156,6 @@
                           echo '<hr>';
                           echo '<tr>';
                           echo '<td>'.'<center>'.$data['judul'].'</center>'.'</td>';
-                          // echo '<td>'.$data['nama_penerbit'].'</td>';
-                          // echo '<td>'.$data['pengarang'].'</td>';
-                          // echo '<div class="judul"><p>'.$data['judul'].'</p></div>';
-                          // echo '<p align="right"><font size="1px"><i>'.$data['tgl_update'].'&nbsp;&nbsp;&nbsp;</i></font></p>';
                            echo '</div>';
                           echo '</div>';
                           echo '</tr>';
@@ -264,7 +165,7 @@
 
                             ?>
                           
-                           
+<div class="container">                          
 <?php
      if($_SERVER['REQUEST_METHOD'] == "POST") {
             $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
@@ -297,7 +198,7 @@
       }
 ?>
 
-
+</div>
 <br>
 <br>
 <br>
@@ -306,3 +207,24 @@
 <br>
 <br>
 <br>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<!-- Ini merupakan script yang terpenting -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#myModal').on('show.bs.modal', function (e) {
+            var getDetail = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : 'detail_buku.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getDetail='+ getDetail,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
