@@ -174,9 +174,31 @@ include '../config/koneksi.php';
     include 'edit-peminjaman.php';
          else if ($content=='data-peminjaman')
     include 'data-peminjaman.php';
-
-
-
+         else if ($content=='all-peminjaman')
+    include 'all-peminjaman.php';
+        else if ($content=='sudah-dikembalikan')
+    include 'sudah-dikembalikan.php';
+        else if ($content=='belum-dikembalikan')
+    include 'belum-dikembalikan.php';
+        else if ($content=='all-anggota')
+    include 'all-anggota.php';
+        else if ($content=='aktif')
+    include 'aktif.php';
+        else if ($content=='tidak-aktif')
+    include 'tidak-aktif.php';
+        else if ($content=='all-hilang')
+    include 'all-hilang.php';
+        else if ($content=='belum-dikembalikan-hilang')
+    include 'belum-dikembalikan-hilang.php';
+        else if ($content=='sudah-dikembalikan-hilang')
+    include 'sudah-dikembalikan-hilang.php';
+        else if ($content=='all-denda')
+    include 'all-denda.php';
+        else if ($content=='belum-lunas')
+    include 'belum-lunas.php';
+        else if ($content=='lunas')
+    include 'lunas.php';
+        
 ?>
 </div>
  <div class="footer-bottom">

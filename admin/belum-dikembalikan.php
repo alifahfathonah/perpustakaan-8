@@ -34,6 +34,10 @@
 </style>
 </head>
 
+
+
+
+
 <div class="main-panel">
 <div class="col-md-12" style="padding:0px">
   <ol class="breadcrumb" style="margin:0;border-radius:0;">
@@ -50,8 +54,9 @@
     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Filters
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="admin.php?content=all-peminjaman">All</a></li>
-      <li><a href="admin.php?content=sudah-dikembalikan">Sudah Dikembalikan</a></li>
+      <li><a href="admin.php?content=all">All</a></li>
+      <li><a href="admin.php?content=sudah-dikembalikan">Sudah Dikembalikan</a>
+      </li>
       <li><a href="admin.php?content=belum-dikembalikan">Belum Dikembalikan</a></li>
     </ul>
     <input size="20px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
@@ -80,7 +85,6 @@
           </tr>
         </thead>
         <tbody>
-
            <?php
 
            // error_reporting(0);
@@ -98,17 +102,17 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT * FROM tbl_pinjam WHERE judul LIKE '%$pencarian%'  ORDER BY id_pinjam DESC";
+                $sql = "SELECT * FROM tbl_pinjam WHERE status_buku='0' AND judul LIKE '%$pencarian%'  ORDER BY id_pinjam DESC";
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT * FROM tbl_pinjam ORDER BY id_pinjam DESC LIMIT $posisi, $batas ";
-                $queryJml = "SELECT * FROM tbl_pinjam ORDER BY id_pinjam DESC";
+                $query = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC LIMIT $posisi, $batas ";
+                $queryJml = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC";
                 $no = $posisi + 1;
               }
             } else {
-              $query = "SELECT * FROM tbl_pinjam ORDER BY id_pinjam DESC LIMIT $posisi, $batas ";
-              $queryJml = "SELECT * FROM tbl_pinjam ORDER BY id_pinjam DESC";
+              $query = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC LIMIT $posisi, $batas ";
+              $queryJml = "SELECT * FROM tbl_pinjam WHERE status_buku='0' ORDER BY id_pinjam DESC";
               $no = $posisi + 1;
             }
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
@@ -172,20 +176,16 @@
         <?php
       }
 ?>
-
-
-
     </form>
 
-     <?php
+   <!--  <?php
       // $now = date('Y-m-d');
       // echo date('Y-m-d');
       // var_dump($nowone);
 
       // $select = "SELECT * FROM `tbl_pinjam` WHERE status_buku='0' and tgl_kembali < '$now'";
       // $tampil = mysqli_query($konek,$select)or die(mysqli_error());
-     $besok = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
-      $query = mysqli_query($konek,"SELECT * FROM tbl_pinjam WHERE status_buku=0 AND tgl_kembali='$besok'");
+      $query = mysqli_query($konek,"SELECT * FROM tbl_pinjam WHERE status_buku=0");
       if (mysqli_num_rows($query) == 0){
         // echo "<td colspan=4 align=center>Tidak Ada Data!</td>";
       }
@@ -196,26 +196,22 @@
           $pinjam = $data['id_pinjam'];
           echo $pinjam;
 
-          $query  = "SELECT * FROM tbl_dendaa WHERE id_pinjam='$pinjam'";
+          $query  = "SELECT count(id_pinjam) FROM `tbl_dendaa` WHERE id_pinjam='6'";
           $tes    = mysqli_query($konek,$query)or die(mysqli_error());          
           $hasil  = mysqli_num_rows($tes);
           echo $hasil;
 
-          if ($hasil=='0') {
+          if ($hasil=0) {
             // function insert data ke tbl_dendaa dr data yg ada di tbl_pinjam
-            $id_pinjam   = $_GET["id_pinjam"];
-            $pinjam = $data['id_pinjam'];
-            
-            $insert     = "INSERT INTO tbl_dendaa VALUES ('', '500', '0', '$pinjam')";
-            $simpan     = mysqli_query($konek, $insert)or die(mysqli_error($konek));
-          }
-          else {
-            //do nothing
           }
 
         }
+        echo "<br>";
+        echo "Function cek table denda dgn id_pinjam sesuai diatas";
+        echo "<br>";
+        echo "Function insert data ke table denda";
       }
-    ?>  
+    ?> -->
 </div>
 </div>
 
@@ -252,7 +248,7 @@
           <label class="col-sm-4">ISBN</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-5">
-           <input type="text"  class="form-control" name="isbn" placeholder="isbn"  id="kode"  required>
+           <input type="text"  class="form-control" name="isbn" placeholder="ISBN"  id="kode"  required>
           </div>
       </div>
       <div class="form-group">
@@ -306,7 +302,7 @@
       var isbn = $("#kode").val();
       console.log(kode);
       $.ajax({
-        url: "./ajax-isbn.php?isbn=" + isbn,
+        url: "./ajax-kode-buku.php?isbn=" + isbn,
         success: function(result){
             console.log(result);
           $("#judul").val(result);
@@ -314,4 +310,3 @@
       });
     });
 </script>
-

@@ -33,7 +33,7 @@
             <label class="col-sm-2">Nomor Induk</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-                <input class="form-control" name="no_induk" type="text" value="<?php echo $data['no_induk']; ?>" required>
+                <input class="form-control" name="no_induk" type="text" value="<?php echo $data['no_induk']; ?>" readonly required>
             </div>
         </div>
         <div class="form-group">
@@ -41,7 +41,7 @@
             <label class="col-sm-2">Jumlah Denda</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-                <input class="form-control" name="jml_denda" type="text" value="<?php echo $data['jml_denda']; ?>" required>
+                <input class="form-control" name="jml_denda" type="text" value="Rp. <?php echo $data['jml_denda']; ?>" required>
             </div>
         </div> 
         <div class="form-group">
@@ -49,15 +49,15 @@
             <label class="col-sm-2">Tanggal Pinjam</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-                <!-- <?php
-                    $pinjem = "SELECT * FROM tbl_pinjam";
-                    $querypinjem = mysqli_query($konek,$pinjem);
-                    while ($pinjam = mysqli_fetch_array($querypinjem)) { ?>
-                    <input type="date" name="tgl_pinjam" value="<?php echo $pinjam['id_pinjam'] ?>" required> 
-                    <?php
-                    }
-                    ?> -->
-                <input class="form-control" name="tgl_pinjam" type="date" value="<?php echo $data['tgl_pinjam']; ?>" required> 
+                <input class="form-control" name="tgl_pinjam" type="date" value="<?php echo $data['tgl_pinjam']; ?>" readonly required> 
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2"></label>
+            <label class="col-sm-2">Tanggal Pengembalian</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+                <input class="form-control" name="tgl_kembali" type="date" value="<?php echo $data['tgl_kembali']; ?>" readonly required> 
             </div>
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@
             <label class="col-sm-2">Status Denda</label>
             <label class="col-sm-1">:</label>
          <div class="col-sm-5">
-                    <select class="form-control" id="status_denda" name="status_denda" value="<?php echo $data['status_denda']; ?>">
+                    <select class="form-control" id="status_denda" name="status_denda" value="<?php echo $data['status_denda']; ?>" >
                       <option value="0">Belum Lunas</option>
                       <option value="1">Sudah Lunas</option>
                     </select> 
@@ -75,7 +75,7 @@
         <div class="form-group">
             <label class="control-label col-sm-4"></label>
             <div class="col-sm-6" align="right">
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="admin.php?content=data-denda"><button type="button" class="btn btn-default">Kembali</button></a></p>
             </div>
         </div>

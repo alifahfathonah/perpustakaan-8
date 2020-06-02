@@ -30,8 +30,8 @@
                 <input type="hidden" name="id_buku" value="<?php echo $id_buku ?>">
                 <tr>
                   <tr>
-                  <th><font size="2px">Kode Buku</font></th>
-                  <td width="800"><input class="form-control" name="kode_buku" type="text" value="<?php echo $data['kode_buku']; ?>" required></td>
+                  <th><font size="2px">ISBN</font></th>
+                  <td width="800"><input class="form-control" name="isbn" type="text" value="<?php echo $data['isbn']; ?>" required></td>
                 </tr>
                 <tr>
                   <tr>

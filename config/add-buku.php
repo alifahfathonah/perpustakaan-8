@@ -4,7 +4,7 @@
 
 	include 'koneksi.php';
 
-	$kode_buku		= $_POST["kode_buku"];
+	$isbn			= $_POST["isbn"];
 	$judul		   	= $_POST["judul"];
 	$nama_penerbit	= $_POST["nama_penerbit"];
 	$pengarang		= $_POST["pengarang"];
@@ -53,7 +53,7 @@
 	    }
 	}
 
-	$insert = "INSERT INTO tbl_buku VALUES ('', '$kode_buku', '$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
+	$insert = "INSERT INTO tbl_buku VALUES ('', '$isbn', '$judul','$nama_penerbit','$pengarang', '$tahun_terbit', '$target_file', '$jml_buku')";
 
 
 

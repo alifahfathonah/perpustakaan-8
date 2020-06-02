@@ -85,7 +85,8 @@
        <tr>
         <th><font size="2px">Jenis Kelamin</font></th>
         <td width="800"> 
-          <select class="form-control"  name="jk_siswa" value="<?php echo $data['jk_siswa']; ?>">
+          <select class="form-control" id="sel1" name="jk_siswa">
+            <option><?php echo $data['jk_siswa'];?></option>
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
           </select>
@@ -93,7 +94,7 @@
       </tr>
       <tr>
         <th><font size="2px">No Handphone</font></th>
-        <td width="800"> <input type="number" class="form-control" name="hp_siswa"  value="<?php echo $data['hp_siswa']; ?>" required></td>
+        <td width="800"> <input type="tel" class="form-control" name="hp_siswa"  value="<?php echo $data['hp_siswa']; ?>" required></td>
       </tr>
       <tr>
         <th><font size="2px">Alamat Email</font></th>
@@ -113,8 +114,8 @@
         <th><font size="2px">Status Siswa</font></th>
         <td width="800">
             <select class="form-control"  name="status_siswa" value="<?php echo $data['status_siswa']; ?>">
-                <option value="0">Tidak Aktif</option>
                 <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
             </select>
         </td>
       </tr>

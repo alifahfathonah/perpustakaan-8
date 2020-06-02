@@ -6,7 +6,7 @@
 
 	$no_induk		   	= $_POST['no_induk'];
 	$nama_siswa			= $_POST['nama_siswa'];
-	$kode_buku			= $_POST['kode_buku'];
+	$isbn				= $_POST['isbn'];
 	$judul				= $_POST['judul'];
 	// $tgl_hilang			= date('Y-m-d');
 	$status_fc			= $_POST['status_fc'];
@@ -14,7 +14,7 @@
 	$masa_berlaku		= date('Y-m-d', strtotime('+7 day', strtotime($tgl_hilang)));
 	$keterangan			= $_POST['keterangan'];
 	
-	$insert			= "INSERT INTO tbl_hilang VALUES ('', '$no_induk','$nama_siswa', '$kode_buku', '$judul', '$status_fc', '$tgl_hilang','-', '$masa_berlaku', '$keterangan')";
+	$insert			= "INSERT INTO tbl_hilang VALUES ('', '$no_induk','$nama_siswa', '$isbn', '$judul', '$status_fc', '$tgl_hilang','-', '$masa_berlaku', '$keterangan')";
 
 	$simpan			= mysqli_query($konek, $insert)or die(mysqli_error($konek));
 

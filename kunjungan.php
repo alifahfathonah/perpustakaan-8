@@ -57,7 +57,7 @@
                   <div class="checkbox" data-toggle="modal">
                   <label><input type="checkbox" id="myCheck" data-toggle="modal" data-target="#myModal" onclick="myFunction()"> Lupa nomor induk</label>
                   </div>
-                <p align="right"><button type="submit" class="btn btn-success">Simpan
+                <p align="right"><button type="Submit" value="Submit" class="btn btn-success">Simpan
                 </button></p>
             </form>
           </div>
@@ -92,8 +92,8 @@
                  <table id="myTable" class="table1 table-striped">
                     <thead>
                       <tr>
-                        <th>Nama Anggota</th>
-                        <th>Nomor Induk</th>
+                        <th>Nama </th>
+                        <th>NIS</th>
                         <th>Jurusan</th>
                         <th>Kelas</th>
                       </tr>

@@ -94,23 +94,23 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT * FROM tbl_hilang WHERE status_fc='0' AND no_induk LIKE '%$pencarian%' ORDER BY id_hilang DESC";
+                $sql = "SELECT * FROM tbl_hilang WHERE status_fc='1' AND no_induk LIKE '%$pencarian%' ORDER BY id_hilang DESC";
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT * FROM tbl_hilang WHERE status_fc='0' ORDER BY id_hilang DESC LIMIT $posisi, $batas ";
-                $queryJml = "SELECT * FROM tbl_hilang WHERE status_fc='0' ORDER BY id_hilang DESC";
+                $query = "SELECT * FROM tbl_hilang WHERE status_fc='1' ORDER BY id_hilang DESC LIMIT $posisi, $batas ";
+                $queryJml = "SELECT * FROM tbl_hilang WHERE status_fc='1' ORDER BY id_hilang DESC";
                 $no = $posisi + 1;
               }
             } else {
-              $query = "SELECT * FROM tbl_hilang WHERE status_fc='0' ORDER BY id_hilang DESC LIMIT $posisi, $batas ";
-              $queryJml = "SELECT * FROM tbl_hilang WHERE status_fc='0' ORDER BY id_hilang DESC";
+              $query = "SELECT * FROM tbl_hilang WHERE status_fc='1' ORDER BY id_hilang DESC LIMIT $posisi, $batas ";
+              $queryJml = "SELECT * FROM tbl_hilang WHERE status_fc='1' ORDER BY id_hilang DESC";
               $no = $posisi + 1;
             }
             
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                     if(mysqli_num_rows($querydata) == 0){
-                      echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
+                      echo '<tr><td colspan="10" align="center">Tidak ada data!</td></tr>';
                     }
                       else
                     {
@@ -206,7 +206,7 @@
             <label class="col-sm-3">ISBN</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-6">
-              <input type="text"  class="form-control" name="isbn" placeholder="isbn"  id="kode"  required>       
+              <input type="text"  class="form-control" name="isbn" placeholder="Kode Buku"  id="kode"  required>       
             </div>
           </div>
           <div class="form-group">
@@ -240,7 +240,7 @@
       var isbn = $("#kode").val();
       console.log(kode);
       $.ajax({
-        url: "./ajax-isbn.php?isbn=" + isbn,
+        url: "./ajax-kode-buku.php?isbn=" + isbn,
         success: function(result){
             console.log(result);
           $("#judul").val(result);

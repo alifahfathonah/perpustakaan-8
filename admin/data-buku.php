@@ -52,7 +52,7 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Kode Buku</th>
+            <th>ISBN</th>
             <th>Judul</th>
             <th>Nama Penerbit</th>
             <th>Pengarang</th>
@@ -80,7 +80,7 @@
                        if($_SERVER['REQUEST_METHOD'] == "POST") {
                          $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
                          if ($pencarian != '') {
-                           $sql = "SELECT * FROM tbl_buku WHERE id_buku AND judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' OR pengarang LIKE '%$pencarian%' OR tahun_terbit LIKE '%$pencarian%' OR gambar LIKE '%$pencarian%' OR kode_buku LIKE '%$pencarian%' ORDER BY id_buku DESC";
+                           $sql = "SELECT * FROM tbl_buku WHERE id_buku AND judul LIKE '%$pencarian%' OR nama_penerbit LIKE '%$pencarian%' OR pengarang LIKE '%$pencarian%' OR tahun_terbit LIKE '%$pencarian%' OR gambar LIKE '%$pencarian%' OR isbn LIKE '%$pencarian%' ORDER BY id_buku DESC";
 
                               $query = $sql;
                               $queryJml = $sql;
@@ -104,7 +104,7 @@
                                       while($data = mysqli_fetch_array($querydata)){  
                                         echo '<tr>';
                                         echo '<td>'.$no.'</td>';
-                                        echo '<td>'.$data['kode_buku'].'</td>';
+                                        echo '<td>'.$data['isbn'].'</td>';
                                         echo '<td>'.$data['judul'].'</td>';
                                         echo '<td>'.$data['nama_penerbit'].'</td>';
                                         echo '<td>'.$data['pengarang'].'</td>';
@@ -175,10 +175,10 @@
           <form action="../config/add-buku.php" class="form-horizontal" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label class="col-sm-1"></label>
-            <label class="col-sm-3">Kode Buku</label>
+            <label class="col-sm-3">ISBN</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" name="kode_buku" placeholder="Kode Buku" required>
+              <input type="text" class="form-control" name="isbn" placeholder="Kode Buku" required>
             </div>
           </div>
           <div class="form-group">
@@ -243,8 +243,3 @@
     </div>
     </div>
   </div>
-
-
-
-
-    

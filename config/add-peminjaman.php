@@ -11,13 +11,13 @@
 	$tgl_kembali		= date('Y-m-d', strtotime('+14 day', strtotime($tgl_pinjam)));
     $no_induk           = $_POST['no_induk'];
     $nama_siswa			= $_POST['nama_siswa'];
-    $kode_buku			= $_POST['kode_buku'];
+    $isbn				= $_POST['isbn'];
     $judul				= $_POST['judul'];
     $status_buku        = $_POST['status_buku'];
     $jml_pinjam			= $_POST['jml_pinjam'];
 
 
-    $insert			= "INSERT INTO tbl_pinjam VALUES ('', '$tgl_pinjam', '$tgl_kembali', '$no_induk', '$nama_siswa', '$judul', '$status_buku', '$jml_pinjam', '$kode_buku')";
+    $insert			= "INSERT INTO tbl_pinjam VALUES ('', '$tgl_pinjam', '$tgl_kembali', '$no_induk', '$nama_siswa', '$judul', '$status_buku', '$jml_pinjam', '$isbn')";
 
 	$simpan			= mysqli_query($konek, $insert)or die(mysqli_error($konek));
 

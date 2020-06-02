@@ -110,7 +110,7 @@
             
             $querydata = mysqli_query($konek, $query)or die(mysqli_error());
                     if(mysqli_num_rows($querydata) == 0){
-                      echo '<tr><td colspan="6" align="center">Tidak ada data!</td></tr>';
+                      echo '<tr><td colspan="10" align="center">Tidak ada data!</td></tr>';
                     }
                       else
                     {
@@ -206,7 +206,7 @@
             <label class="col-sm-3">ISBN</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-6">
-              <input type="text"  class="form-control" name="isbn" placeholder="isbn"  id="kode"  required>       
+              <input type="text"  class="form-control" name="isbn" placeholder="Kode Buku"  id="kode"  required>       
             </div>
           </div>
           <div class="form-group">
@@ -240,7 +240,7 @@
       var isbn = $("#kode").val();
       console.log(kode);
       $.ajax({
-        url: "./ajax-isbn.php?isbn=" + isbn,
+        url: "./ajax-kode-buku.php?isbn=" + isbn,
         success: function(result){
             console.log(result);
           $("#judul").val(result);

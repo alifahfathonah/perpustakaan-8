@@ -5,12 +5,14 @@
     $id_hilang       = $_POST['id_hilang'];
     $no_induk        = $_POST['no_induk'];
     $nama_siswa      = $_POST['nama_siswa'];
+    $isbn            = $_POST['isbn'];
+    $judul           = $_POST['judul'];
     $status_fc       = $_POST['status_fc'];
     $tgl_hilang      = $_POST['tgl_hilang'];
     $tgl_fc          = $_POST['tgl_fc'];
     $masa_berlaku    = $_POST['masa_berlaku'];
     $keterangan      = $_POST['keterangan'];
-    $update     = "UPDATE tbl_hilang SET no_induk='$no_induk', nama_siswa='$nama_siswa', status_fc='$status_fc', tgl_hilang='$tgl_hilang', tgl_fc='$tgl_fc', masa_berlaku='$masa_berlaku', keterangan='$keterangan' WHERE id_hilang='$id_hilang'";
+    $update     = "UPDATE tbl_hilang SET no_induk='$no_induk', nama_siswa='$nama_siswa', isbn='$isbn', judul='$judul', status_fc='$status_fc', tgl_hilang='$tgl_hilang', tgl_fc='$tgl_fc', masa_berlaku='$masa_berlaku', keterangan='$keterangan' WHERE id_hilang='$id_hilang'";
 
 	$update	= mysqli_query($konek, $update)or die(mysqli_error());
 

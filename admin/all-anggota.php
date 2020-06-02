@@ -62,7 +62,7 @@
         <li><a href="admin.php?content=aktif">Aktif</a></li>
         <li><a href="admin.php?content=tidak-aktif">Tidak Aktif</a></li>
       </ul>
-        <input size="34px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
+        <input size="20px" type="text" name="pencarian" class="form-control" placeholder="Pencarian">
         <button type="submit" class="btn btn-primary"><i class="fa fa-search fa-fw"></i></button>
         <a href=""><button type="button" class="btn btn-warning"><i class="fa fa-refresh fa-fw"></i></button></a>
         <a target ="_blank" role="button" href="print-data-anggota.php"><button type="button" class="btn btn-success"><i class="fa fa-print fa-fw"></i></button></a>
@@ -102,17 +102,17 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT * FROM tbl_siswa WHERE status_siswa='1' AND nama_siswa LIKE '%$pencarian%' OR id_siswa LIKE '%$pencarian' OR no_induk LIKE '%$pencarian' OR jurusan LIKE '%$pencarian' OR kelas_siswa LIKE '%$pencarian' OR agama_siswa LIKE '%$pencarian' ORDER BY id_siswa DESC";
+                $sql = "SELECT * FROM tbl_siswa WHERE  nama_siswa LIKE '%$pencarian%' OR id_siswa LIKE '%$pencarian' OR no_induk LIKE '%$pencarian' OR jurusan LIKE '%$pencarian' OR kelas_siswa LIKE '%$pencarian' OR agama_siswa LIKE '%$pencarian' ORDER BY id_siswa DESC";
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC LIMIT $posisi, $batas ";
-                $queryJml = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC";
+                $query = "SELECT * FROM tbl_siswa  ORDER BY id_siswa DESC LIMIT $posisi, $batas ";
+                $queryJml = "SELECT * FROM tbl_siswa  ORDER BY id_siswa DESC";
                 $no = $posisi + 1;
               }
             } else {
-              $query = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC LIMIT $posisi, $batas ";
-              $queryJml = "SELECT * FROM tbl_siswa WHERE status_siswa='1' ORDER BY id_siswa DESC";
+              $query = "SELECT * FROM tbl_siswa ORDER BY id_siswa DESC LIMIT $posisi, $batas ";
+              $queryJml = "SELECT * FROM tbl_siswa ORDER BY id_siswa DESC";
               $no = $posisi + 1;
             }
             
@@ -193,7 +193,7 @@
             <label class="col-sm-3">Nomor Induk</label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-6">
-              <input type="number"  class="form-control" name="no_induk" id="noinduk" placeholder="e.g. 888192812" required>
+              <input type="number"  class="form-control" name="no_induk" placeholder="e.g. 888192812" required>
               
             </div>
           </div>
@@ -265,7 +265,7 @@
           <label class="col-sm-3">No Handphone</label>
           <label class="col-sm-1">:</label>
           <div class="col-sm-6">
-            <input type="tel" class="form-control" name="hp_siswa" placeholder="e.g 0856833489"  required>
+            <input type="number" class="form-control" name="hp_siswa" placeholder="No Handphone"  required>
           </div>
       </div>
       <div class="form-group">
@@ -296,7 +296,7 @@
       <div class="form-group">
          <label class="control-label col-sm-5"></label>
          <div class="col-sm-6" align="right">
-           <button type="submit" class="btn btn-primary" onclick="validasi()">Simpan</button></a></p>
+           <button type="submit" class="btn btn-primary">Simpan</button></a></p>
           </div>
       </div>
     </form>
@@ -307,15 +307,13 @@
     </div>
     </div>
   </div>
-<script>
-  function validasi(){
-  var noinduk=document.getElementById('noinduk').value; 
-if (noinduk.length!=12) {
-alert("Nomor Induk harus 12 digit");
+<!-- <script>
+  var notelepon=document.getElementById('notelepon').value; 
+if (notelepon.length!=12) {
+alert("no telepon harus 12 karakter");
 return false;
 }
-}
-</script> 
+</script> -->
 
 
 

@@ -7,7 +7,7 @@
   <div class="form-inline">
   	<div class="form-group">
     	<input size="140px" type="text" name="search" class="form-control" placeholder="Masukkan judul buku"  id="myInput" onkeyup="myFunctioncari()">
-      	<button class="btn btn-primary" type="submit">
+      	<button class="btn btn-primary" onkeyup="myFunctioncari()" type="submit">
         Cari</button>
     </div>
   </div>
@@ -17,11 +17,12 @@
 <br>
 <br>
 <div class="container">
- <form class="form-horizontal" method="POST">
+ <form class="form-horizontal" method="POST" >
           <?php
 
             include 'config/koneksi.php';
            
+            
            
             $query = mysqli_query($konek, "SELECT * FROM tbl_buku ORDER BY id_buku DESC")or die(mysqli_error());
                     if(mysqli_num_rows($query) == 0){ 
@@ -33,10 +34,11 @@
                     { 
                       $no = 1;        
                       while($data = mysqli_fetch_array($query)){  
+
                         echo '<div class="col-md-3">';
                         echo '<div class="panel panel-success">';
                         echo '<div class="panel-heading">';
-                        echo '<center>Buku</center>';
+                        echo '<p align="center"><b>'.$data['judul'].'</b></p>';
                         echo '</div>';
                         echo '<div class="panel-body"';
                         // echo '<img src="galeri/$data['gambar'] width="30" height="20" />';
@@ -49,7 +51,10 @@
                         echo '<table class="table" style="background-color: #f2f2f2;">';
                         echo '<tr>';
                         // echo '<td align="center">';
-                        echo '<center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
+                        // echo '<center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
+
+                        echo '<p align="center">'.substr($data['buku'], 0,300).'&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Lihat Detail" href=index.php?content=lihat-detail&&id_buku='.$data['id_buku'].'>Lihat Detail ..</a></p>';
+
                         // echo '</td>';
                         // echo '<td><center></center></td>';
                         echo '</tr>';
@@ -59,7 +64,7 @@
                       <?php  
                         echo '<hr>';
                         echo '<tr>';
-                        echo '<td>'.'<center>'.$data['judul'].'</center>'.'</td>';
+                        // echo '<td>'.'<center>'.$data['judul'].'</center>'.'</td>';
                         // echo '<td>'.$data['nama_penerbit'].'</td>';
                         // echo '<td>'.$data['pengarang'].'</td>';
                         // echo '<div class="judul"><p>'.$data['judul'].'</p></div>';
@@ -74,6 +79,99 @@
                 ?>
     </form>
 </div>
+
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+      
+     <div class="modal-content">
+          <div class="modal-header" style="background-color:#228B22";>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <p align="center"><font size="2px"><i>Sistem Informasi Perpustakaan SMK Patriot 2 Bekasi</i></font></p>
+            <h4 class="modal-title" align="center"><b>Lihat Detail Buku</b></h4>
+          </div>
+      <div class="modal-body" >
+          <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">ISBN</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+              <p>
+                <?php
+                   $query = mysqli_query($konek, "SELECT * FROM tbl_buku ORDER BY id_buku DESC")or die(mysqli_error());
+                   while($data = mysqli_fetch_array($query)){  
+                   echo '<p><b>'.$data['isbn'].'</b></p>';
+                  }
+                ?>
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-1"></label>
+            <label class="col-sm-3">Judul</label>
+            <label class="col-sm-1">:</label>
+            <div class="col-sm-5">
+              <p><?php echo $data['judul']; ?></p>
+            </div>
+          </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Nama Penerbit</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+            <p><?php echo $data['nama_penerbit']; ?></p>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Pengarang</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+            <p><?php echo $data['pengarang']; ?></p>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Tahun Terbit</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+            <p><?php echo $data['tahun_terbit']; ?></p>
+          </div>
+      </div> 
+ -->
+
+    <!--   <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Gambar</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+             <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+          </div>
+      </div> -->
+      <!-- <div class="form-group">
+          <label class="col-sm-1"></label>
+          <label class="col-sm-3">Jumlah Buku</label>
+          <label class="col-sm-1">:</label>
+          <div class="col-sm-5">
+            <input type="number" class="form-control" name="jml_buku" placeholder="Jumlah Buku" required>
+          </div>
+      </div> -->
+      <!-- <div class="form-group">
+          <label class="control-label col-sm-4"></label>
+          <div class="col-sm-6" align="right">
+            <button class="btn btn-primary">Simpan</button>
+          </div>
+      </div> -->
+    </form>
+    </div>
+          <div class="modal-footer">
+            
+          </div>
+    </div>
+    </div>
+  </div>
+
  <?php
 
           include '../config/koneksi.php';
@@ -183,25 +281,7 @@
         <?php
       }
 ?>
-<script >
-  function myFunctioncari() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("cari");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
+
 
 <br>
 <br>

@@ -52,8 +52,10 @@
           <tr>
             <th>No</th>
             <th>Nomor Induk</th>
+            <th>Nama</th>
             <th>Jumlah Denda</th>
             <th>Tanggal Peminjaman</th>
+            <th>Tanggal Pengembalian</th>
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
@@ -75,17 +77,17 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
               $pencarian = trim(mysqli_real_escape_string($konek, $_POST['pencarian']));
               if ($pencarian != '') {
-                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' AND no_induk LIKE '%$pencarian%'"; 
+                $sql = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.status_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.nama_siswa FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.status_denda='0' AND no_induk LIKE '%$pencarian%'"; 
                 $query = $sql;
                 $queryJml = $sql;
               } else {
-                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
-                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0'";
+                $query = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.status_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.nama_siswa FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.status_denda='0' LIMIT $posisi, $batas ";
+                $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.status_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.nama_siswa FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.status_denda='0'";
                 $no = $posisi + 1;
               }
             } else {
-              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0' LIMIT $posisi, $batas ";
-              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND status_denda='0'";
+              $query ="SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.status_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembali, tbl_pinjam.nama_siswa FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.status_denda='0' LIMIT $posisi, $batas ";
+              $queryJml = "SELECT DISTINCT tbl_dendaa.id_denda, tbl_dendaa.status_denda, tbl_dendaa.jml_denda, tbl_pinjam.no_induk, tbl_pinjam.tgl_pinjam, tbl_pinjam.tgl_kembal, tbl_pinjam.nama_siswa FROM tbl_dendaa, tbl_pinjam WHERE tbl_pinjam.id_pinjam=tbl_dendaa.id_pinjam AND tbl_dendaa.status_denda='0'";
               
               $no = $posisi + 1;
             } 
@@ -96,16 +98,25 @@
                       else 
                     {
                       $no = 1;
+
                       while($data = mysqli_fetch_array($querydata)){
                         echo '<tr>';
                         echo '<td>'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
-                        echo '<td>'.$data['jml_denda'].'</td>';
+                        echo '<td>'.$data['nama_siswa'].'</td>'; 
+                        
+                        $kembali    =new DateTime($data['tgl_kembali']);
+                        $today      =new DateTime();
+                        $diff       = $today->diff($kembali);
+                        $jmlden     = $diff->d * '500';
+
+                        echo '<td>Rp.'.$jmlden.'</td>'; 
                         echo '<td>'.$data['tgl_pinjam'].'</td>';
+                        echo '<td>'.$data['tgl_kembali'].'</td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-denda&&id_denda='.$data['id_denda'].'&&id_pinjam='.$data['id_pinjam'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-denda.php?id_denda='.$data['id_denda'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';
-                        $no++;
+                        $no++; 
                       }
                     }
 
