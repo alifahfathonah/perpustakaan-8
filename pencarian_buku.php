@@ -1,3 +1,5 @@
+
+
  <br>
 <br>
 <br>
@@ -41,6 +43,7 @@
                         echo '<p align="center"><b>'.$data['judul'].'</b></p>';
                         echo '</div>';
                         echo '<div class="panel-body"';
+
                         // echo '<img src="galeri/$data['gambar'] width="30" height="20" />';
                       ?>
                       
@@ -51,9 +54,9 @@
                         echo '<table class="table" style="background-color: #f2f2f2;">';
                         echo '<tr>';
                         // echo '<td align="center">';
-                        // echo '<center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
+                        echo '<center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
 
-                        echo '<p align="center">'.substr($data['buku'], 0,300).'&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Lihat Detail" href=index.php?content=lihat-detail&&id_buku='.$data['id_buku'].'>Lihat Detail ..</a></p>';
+                        // echo '<p align="center">'.substr($data['buku'], 0,300).'&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Lihat Detail" href=index.php?content=lihat-detail&&id_buku='.$data['id_buku'].'>Lihat Detail ..</a></p>';
 
                         // echo '</td>';
                         // echo '<td><center></center></td>';
@@ -80,7 +83,23 @@
     </form>
 </div>
 
-<!-- <div id="myModal" class="modal fade" role="dialog">
+
+ 
+
+<div id="myModal" class="modal fade" role="dialog">
+   <?php
+
+  error_reporting(0);
+
+  include 'config/koneksi.php';
+
+  $id_buku = $_GET['id_buku'];
+
+  $query      = "SELECT * FROM tbl_buku WHERE id_buku = '$id_buku'";
+  $querydata  = mysqli_query($konek, $query)or die(mysql_error());
+  $data       = mysqli_fetch_array($querydata);
+
+?>
   <div class="modal-dialog">
 
       
@@ -91,6 +110,7 @@
             <h4 class="modal-title" align="center"><b>Lihat Detail Buku</b></h4>
           </div>
       <div class="modal-body" >
+
           <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label class="col-sm-1"></label>
@@ -98,12 +118,7 @@
             <label class="col-sm-1">:</label>
             <div class="col-sm-5">
               <p>
-                <?php
-                   $query = mysqli_query($konek, "SELECT * FROM tbl_buku ORDER BY id_buku DESC")or die(mysqli_error());
-                   while($data = mysqli_fetch_array($query)){  
-                   echo '<p><b>'.$data['isbn'].'</b></p>';
-                  }
-                ?>
+               <?php echo $data['isbn']; ?>
               </p>
             </div>
           </div>
@@ -139,7 +154,7 @@
             <p><?php echo $data['tahun_terbit']; ?></p>
           </div>
       </div> 
- -->
+
 
     <!--   <div class="form-group">
           <label class="col-sm-1"></label>
