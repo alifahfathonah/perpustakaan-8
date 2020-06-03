@@ -56,13 +56,15 @@
             <th>Jumlah Denda</th>
             <th>Tanggal Peminjaman</th>
             <th>Tanggal Pengembalian</th>
+            <th>Interval</th>
             <th colspan="2"><center>Action</center></th>
           </tr>
         </thead>
         <tbody> 
           <?php
-
-           error_reporting(0);
+          
+             
+           //error_reporting(0);
 
             include '../config/koneksi.php';
 
@@ -97,22 +99,43 @@
                     }
                       else 
                     {
-                      $no = 1;
+                      $no   = 1;
 
+                      // $now  = date('Y-m-d');
+                      // $a    = ;
+                      // $awal  = strtotime('1988-08-10');
+                      // $now   = time(); // Waktu sekarang
+                      // echo $now;
+                      // $diff  = $akhir - $awal;
+                      // $coba  = date_diff($now, $a);
+                      // var_dump($coba);
+                      // echo $coba->d;
+                      // echo '<br>';
+                      // echo $now;
                       while($data = mysqli_fetch_array($querydata)){
                         echo '<tr>';
                         echo '<td>'.$no.'</td>';
                         echo '<td>'.$data['no_induk'].'</td>';
-                        echo '<td>'.$data['nama_siswa'].'</td>'; 
+                        echo '<td>'.$data['nama_siswa'].'</td>';                        
                         
-                        $kembali    =new DateTime($data['tgl_kembali']);
-                        $today      =new DateTime();
-                        $diff       = $today->diff($kembali);
-                        $jmlden     = $diff->d * '500';
+                        $balikin  = strtotime($data['tgl_kembali']);
+                        $now      = time(); // Waktu sekarang
+                        // echo $now;
+                        $jml      = $now - $balikin;
+                        $hari     = floor($jml / (60 * 60 * 24));
+                        // var_dump($hari);
+                        $denda    = $hari * 500;
+                        $iden     = $data['id_denda'];
+                        echo '<td>Rp.'.$denda.'</td>';
 
-                        echo '<td>Rp.'.$jmlden.'</td>'; 
+                        $queryupdate = "UPDATE tbl_dendaa
+                                        SET 	jml_denda = '$denda'
+                                        WHERE id_denda = '$iden'";
+                        $update	= mysqli_query($konek, $queryupdate)or die(mysqli_error());
+
                         echo '<td>'.$data['tgl_pinjam'].'</td>';
                         echo '<td>'.$data['tgl_kembali'].'</td>';
+                        echo '<td>'.$hari.'</td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="right" title="Edit Keterangan" href=admin.php?content=edit-denda&&id_denda='.$data['id_denda'].'&&id_pinjam='.$data['id_pinjam'].'><i class="fa fa-edit fa-fw"></i></a></td>';
                         echo '<td  width="20"><a data-toggle="tooltip" data-placement="left" title="Delete" href=../config/delete-denda.php?id_denda='.$data['id_denda'].'><i class="fa fa-trash fa-fw"></i></a></td>';
                         echo '</tr>';
@@ -159,6 +182,3 @@
 </div>
 </div>
 
-
-
-    
