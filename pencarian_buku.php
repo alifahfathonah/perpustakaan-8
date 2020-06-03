@@ -54,7 +54,7 @@
                         echo '<table class="table" style="background-color: #f2f2f2;">';
                         echo '<tr>';
                         // echo '<td align="center">';
-                        ?><center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
+                        ?><center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-id='<?php echo $data['id_buku']?>'>Lihat Detail</button></center>';
 <?php
                         echo '</tr>';
                         echo '</table>';
@@ -145,7 +145,9 @@
                           echo '<table class="table" style="background-color: #f2f2f2;">';
                           echo '<tr>';
                           // echo '<td align="center">';
-                          echo '<center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Detail</button></center>';
+                        ?>
+                          <center><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-id="<?php echo $data['id_buku'] ?>">Lihat Detail</button></center>
+                        <?php
                           // echo '</td>';
                           // echo '<td><center></center></td>';
                           echo '</tr>';
@@ -221,7 +223,7 @@
                 data :  'getDetail='+ getDetail,
                 /* memanggil fungsi getDetail dan mengirimkannya */
                 success : function(data){
-                $('.modal-data').html(data);
+                  $('.modal-data').html(data);
                 /* menampilkan data dalam bentuk dokumen HTML */
                 }
             });
